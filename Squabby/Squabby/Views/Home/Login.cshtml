@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="~/css/loginandregister.css">
+    <script src="~/js/loginandregister.js"></script> 
     <title>Login/Register</title>
 </head>
 <body>
     <div id="layer">
-
+        <h1 id="logo">Squabby</h1>
         <div id="menu">
             <div id="selector">
-                <h1>Register</h1>
-                <h1 class="unselected">Sign In</h1>
+                <h1 id="registerselector" onclick="showRegister();">Register</h1>
+                <h1 id="signinselector" class="unselected" onclick="showSignIn();">Sign In</h1>
             </div>
             <form id=register>
                 <h2 class="inputname">Username</h2>
@@ -22,6 +23,14 @@
                 <input type="password"/>
                 <div class="line"></div>
                 <button>Sign Up</button>
+            </form>
+            <form id=signin class="unselectedform">
+                <h2 class="inputname">Username</h2>
+                <input type="username"/>
+                <h2 class="inputname">Password</h2>
+                <input type="password"/>
+                <div class="line"></div>
+                <button>Sign In</button>
             </form>
         </div>
     </div>

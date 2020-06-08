@@ -35,6 +35,14 @@ body {
     background-attachment: fixed;;
 }
 
+#layer #logo {
+    position: absolute;
+    bottom:64px;
+    right:64px;
+    text-transform: uppercase;
+    opacity:0.5;
+}
+
 #menu {
     position:absolute;
     top:50%;
@@ -44,10 +52,13 @@ body {
     text-align:center;
     background-color: rgba(0,0,0,0.25);
     border-radius:24px;
+    transition: height 0.75s;
+    overflow:hidden;
 }
 
 #menu h1 {
     display:inline;
+    transition: opacity 1s;
 }
 
 #menu h1:first-of-type {
@@ -81,10 +92,17 @@ body {
 #menu form {
     margin-left: 24px;
     margin-bottom:2rem;
+    transition: opacity 1s;
 }
 
 .unselected {
     opacity:0.25;
+    transition: all 1s;
+}
+
+.unselectedform {
+    opacity:0;
+    transition: opacity 3s;
 }
 
 .inputname {
@@ -116,7 +134,7 @@ body {
     background-color: rgb(92, 21, 124);
     color:white;
     border:0;
-    transition:all 0.5s;
+    transition:all 1s;
 }
 
 #menu form button:hover {
@@ -129,4 +147,13 @@ body {
     height:1px;
     background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
     margin:1.5rem;
+}
+
+#register {
+    overflow:hidden;
+}
+
+#signin {
+    overflow:hidden;
+    display:none;
 }
