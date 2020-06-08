@@ -10,6 +10,7 @@ namespace Squabby
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc();
         }
         
