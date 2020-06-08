@@ -11,4 +11,8 @@
       <Folder Include="wwwroot\js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
+    </ItemGroup>
+
 </Project>
