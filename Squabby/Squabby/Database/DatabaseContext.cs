@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Squabby.Helpers.Config;
 
 namespace Squabby.Database
 {
@@ -8,7 +9,7 @@ namespace Squabby.Database
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=192.168.1.3;database=squabby;user=root;password=root-password;");
+            optionsBuilder.UseMySQL(ConfigHelper.GetConfig().ConnectionString);
         }
     }
 }

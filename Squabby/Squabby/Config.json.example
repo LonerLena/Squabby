@@ -1,0 +1,4 @@
+{
+  "ConnectionString" : "server=127.0.0.1;database=squabby;user=root;password=root;",
+  "ServerEndPoints" : ["http://127.0.0.1:5001"]
+}
