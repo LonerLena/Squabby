@@ -4,12 +4,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="~/css/loginandregister.css">
+    <link rel="stylesheet" type="text/css" href="~/css/User/loginandregister.css">
     <script src="~/js/loginandregister.js"></script>
     <title>Login/Register</title>
     @if (Model != null)
     {
-        @if (Model.Type == MessageType.LoginError)
+        if (Model.Type == MessageType.LoginError)
         {
             <style>
                 #signin input
@@ -18,7 +18,7 @@
                     border-width: 1px !important;
                     border-color: red !important;
                 }
-            </style>
+            </style> 
         }
         else if (Model.Type == MessageType.RegisterError)
         {
@@ -29,7 +29,7 @@
                     border-width: 1px !important;
                     border-color: red !important;
                 }
-            </style>
+            </style> 
         }
     }
 </head>

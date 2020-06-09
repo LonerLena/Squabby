@@ -1,0 +1,12 @@
+@model Squabby.Models.ViewModels.Message
+
+@{
+    Layout = "~/Views/DefaultLayout.cshtml";
+    ViewBag.Style = "/css/Home/customError.css";
+}
+
+<div id="CustomError">
+    <h1>@Model.MessageString</h1>
+    <p>@Model.Description</p>
+    <a class="button" href="/">Go Home</a>
+</div>

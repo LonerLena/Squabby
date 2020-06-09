@@ -4,9 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="~/css/defaultLayout.css">
     <link rel="stylesheet" type="text/css" href="~/css/default.css">
+    @if (ViewBag.Style != null)
+    {
+        <link rel="stylesheet" type="text/css" href="@ViewBag.Style"> 
+    }
     <script src="~/js/default.js"></script>
-    <title>@ViewBag.Title</title>
+    <title>@(ViewBag.Title??"Squabby")</title>
 </head>
 <body>
 <div id="navbar">

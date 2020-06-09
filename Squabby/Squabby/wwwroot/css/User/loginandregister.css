@@ -1,17 +1,17 @@
 @font-face {
     font-family: 'Montserrat';
-    src:  url('../fonts/Montserrat-Regular.ttf') format('truetype');
+    src:  url('../../fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src:  url('../fonts/Montserrat-Bold.ttf') format('truetype');
+    src:  url('../../fonts/Montserrat-Bold.ttf') format('truetype');
     font-weight:bold;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src:  url('../fonts/Montserrat-Black.ttf') format('truetype');
+    src:  url('../../fonts/Montserrat-Black.ttf') format('truetype');
     font-weight:900;
 }
 
@@ -28,7 +28,7 @@ html, body {
 }
 
 body {
-    background-image: url("../images/background.jpg");
+    background-image: url("../../images/background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -84,10 +84,7 @@ body {
 
 #menu #selector {
     text-align:left;
-    margin:4rem;
-    margin-top:1rem;
-    margin-left:0;
-    margin-bottom:3rem;
+    margin: 1rem 4rem 3rem 0;
 }
 
 #menu form input {
@@ -95,9 +92,7 @@ body {
     border-radius:24px;
     border: 0;
     height:1.5rem;
-    padding:0.48rem;
-    padding-left:24px;
-    padding-right:24px;
+    padding: 0.48rem 24px;
     background-color: rgba(255,255,255,0.16);
     color:white;
     font-weight:bold;
@@ -139,9 +134,7 @@ body {
 }
 
 #menu form button {
-    padding:0.64rem;
-    padding-left:24px;
-    padding-right:24px;
+    padding: 0.64rem 24px;
     width:23rem;
     display:block;
     border-radius: 24px;

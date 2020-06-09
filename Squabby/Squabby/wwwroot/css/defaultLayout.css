@@ -1,0 +1,96 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding:0;
+    margin: 3rem 0 0;
+    font-family: "Montserrat";
+    background-color: rgb(25,25,25);
+    color: white;
+}
+
+#navbar {
+    position: fixed;
+    top:0;
+    width:100%;
+    height: 3rem;
+    background-color: black;
+    text-align:center;
+    transition: top 0.5s;
+}
+
+#navbar form input {
+    border-radius:24px;
+    border: 0;
+    height:1rem;
+    padding: 0.48rem 24px;
+    width:25rem;
+    background-color: rgba(255,255,255,0.16);
+    color:white;
+    text-align: center;
+    margin:0;
+    font-family: "Montserrat";
+    font-weight: bold;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+#navbar form input::placeholder {
+    font-weight: normal;
+}
+
+#navbar #logo {
+    text-transform: uppercase;
+    text-align:left;
+    margin:0;
+    color:white;
+    font-size:1.5rem;
+    left:1rem;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    user-select: none;
+    font-weight:bold;
+    transition: all 1s;
+}
+
+#navbar .button {
+    position:absolute;
+    right:1rem;
+    top:50%;
+}
+
+#navbar #account {
+    border-radius:24px;
+    border: 0;
+    height:1rem;
+    padding: 0.48rem 24px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Montserrat";
+    font-weight: bolder;
+    line-height: 1rem;
+    font-size: 1rem;
+    position:absolute;
+    right:1rem;
+    top:50%;
+    transform: translateY(-50%);
+    transition: all 1s;
+}
+
+#navbar #account img {
+    height:1rem;
+    filter: invert(1);
+    float: right;
+    margin-left: 0.5rem;
+}
+
+#navbar a {
+    text-decoration: none;
+}
+
+#navbar #logo:hover {
+    text-shadow: 0 0 10px white;
+    transition: all 1s;
+}
