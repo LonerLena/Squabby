@@ -29,6 +29,7 @@ namespace Squabby
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc();
             services.AddDistributedMemoryCache();
             services.AddSession();

@@ -1,8 +1,38 @@
-@{
-    Layout = "../DefaultLayout.cshtml";
-    ViewBag.Title = "Login";
-}
-
-<div>
-   <h1>Login page</h1> 
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="~/css/loginandregister.css">
+    <script src="~/js/loginandregister.js"></script> 
+    <title>Login/Register</title>
+</head>
+<body>
+    <div id="layer">
+        <h1 id="logo">Squabby</h1>
+        <div id="menu">
+            <div id="selector">
+                <h1 id="registerselector" onclick="showRegister();">Register</h1>
+                <h1 id="signinselector" class="unselected" onclick="showSignIn();">Sign In</h1>
+            </div>
+            <form id=register action="/account/register" method="post">
+                <h2 class="inputname">Username</h2>
+                <input type="username" name="username"/>
+                <h2 class="inputname">Password</h2>
+                <input name="password" type="password"/>
+                <h2 class="inputname">Verify Password</h2>
+                <input type="password"/>
+                <div class="line"></div>
+                <button>Sign Up</button>
+            </form>
+            <form id=signin action="/account/login" method="post" class="unselectedform">
+                <h2 class="inputname">Username</h2>
+                <input name="username" type="username"/>
+                <h2 class="inputname">Password</h2>
+                <input name="password" type="password"/>
+                <div class="line"></div>
+                <button>Sign In</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
