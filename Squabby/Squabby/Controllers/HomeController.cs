@@ -5,10 +5,10 @@ namespace Squabby.Controllers
     public class HomeController : Controller
     {
         [Route("")]
-        [Route("index")]
+        [Route("Index")]
         public IActionResult Index() => View();
         
-        [Route("login")]
+        [Route("Login")]
         public IActionResult Login() => View();
     }
 }

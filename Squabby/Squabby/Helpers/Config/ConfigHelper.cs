@@ -21,7 +21,7 @@ namespace Squabby.Helpers.Config
         private static Config _config;
 
         /// <summary>
-        /// Load config when first needed
+        /// Load config when needed for the first time
         /// </summary>
         /// <exception cref="FileNotFoundException">config file could not be found</exception>
         static ConfigHelper()
