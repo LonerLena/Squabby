@@ -59,6 +59,7 @@ body {
 #menu h1 {
     display:inline;
     transition: opacity 1s;
+    cursor: pointer;
 }
 
 #menu h1:first-of-type {
@@ -135,6 +136,7 @@ body {
     color:white;
     border:0;
     transition:all 1s;
+    cursor: pointer;
 }
 
 #menu form button:hover {
