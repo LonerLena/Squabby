@@ -39,6 +39,7 @@ html, body {
     transform: translateY(-50%);
     transition: all 1s;
     text-decoration: none;
+    user-select: none;
 }
 
 
@@ -54,4 +55,12 @@ html, body {
     display:block;
     margin-left:auto;
     margin-right:auto;
+}
+
+.inl {
+    display: inline;
+}
+
+.f075r {
+    font-size: 0.75rem;
 }
