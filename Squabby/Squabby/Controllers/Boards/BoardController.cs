@@ -6,7 +6,7 @@ namespace Squabby.Controllers.Boards
     [Route("b")]
     public class BoardController
     {
-        [Route("")]
+        [Route("show")]
         public string BoardIndex()
         {
             return "Board index";
