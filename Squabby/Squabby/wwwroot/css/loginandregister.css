@@ -41,6 +41,21 @@ body {
     right:64px;
     text-transform: uppercase;
     opacity:0.5;
+    text-decoration: none;
+    color:white;
+    font-size: 2rem;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#layer #logo:visited {
+    color: white;
+}
+
+#layer #logo:hover {
+    opacity:0.75;
+    text-shadow: 0 0 64px white;
+    transition: all 1s;
 }
 
 #menu {
