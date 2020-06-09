@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
 using Squabby.Helpers.Authentication;
 using Squabby.Helpers.Cryptography;
@@ -41,12 +42,12 @@ namespace Squabby.Controllers.User
                 return View("Login", new Message(MessageType.RegisterError));
 
             await using var db = new SquabbyContext();
-            if (db.Accounts.Any(x => x.Username == user.Username))
+            if (await db.Accounts.AnyAsync(x => x.Username == user.Username))
                 return View("Login", new Message(MessageType.RegisterError, "User already exists"));
 
             user.Role = Role.User;
             user.Password = PBKDF2.Hash(user.Password);
-            db.Accounts.Add(user);
+            await db.Accounts.AddAsync(user);
             await db.SaveChangesAsync();
             
             HttpContext.SetUser(user);

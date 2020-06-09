@@ -8,8 +8,8 @@ namespace Squabby.Models
 
         public string Content { get; set; }
 
-        public List<Comment> Reactions { get; set; }
+        public ICollection<Comment> Reactions { get; set; }
         
-        public List<Rating> Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
     }
 }
