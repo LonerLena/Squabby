@@ -23,7 +23,7 @@ namespace Squabby
             
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllers();
             });
         }
         
@@ -31,11 +31,8 @@ namespace Squabby
         {
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc();
-            services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddResponseCaching(); 
-            services.AddRazorPages();
-            services.AddHttpContextAccessor();
 
             services.AddResponseCompression(options => {
                 options.Providers.Add<GzipCompressionProvider>();
