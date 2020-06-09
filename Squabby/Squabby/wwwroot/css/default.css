@@ -21,46 +21,66 @@ html, body {
     padding:0;
     margin: 2rem 0 0;
     font-family: "Montserrat";
-    background-color: rgb(25,25,25);
-    color: white;
+    background-color: rgb(245, 245, 245);
+    color: #434343;
 }
 
-.button{
-    border-radius:24px;
-    border: 1px solid white;
-    height:1rem;
-    padding: 0.48rem 24px;
-    color: white;
-    text-transform: uppercase;
-    font-family: "Montserrat";
-    font-weight: bolder;
-    line-height: 1rem;
-    font-size: 1rem;
-    transform: translateY(-50%);
-    transition: all 1s;
-    text-decoration: none;
-    user-select: none;
+.like {
+    height:0.5rem;
+    width:0.5rem;
+    border-left: 3px solid #434343;
+    border-top: 3px solid #434343;
+    transform: rotate(45deg) translateY(0.25rem);
 }
 
-
-.button:hover {
-    box-shadow: 0 0 10px white;
-    transition: all 1s;
+.dislike {
+    height:0.5rem;
+    width:0.5rem;
+    border-right: 3px solid #434343;
+    border-bottom: 3px solid #434343;
+    transform: rotate(45deg) translateY(-0.25rem);
 }
 
-#maincontent {
-    height:100%;
-    width: 60rem;
-    background-color:black;
+.box {
+    background-color: white;
+    box-shadow: 0 0 32px rgba(0,0,0,0.16);
+    padding:2rem;
+    border-radius: 8px;
+}
+
+.blk {
     display:block;
-    margin-left:auto;
-    margin-right:auto;
 }
 
-.inl {
-    display: inline;
+.w30r {
+    width:30rem;
 }
 
-.f075r {
-    font-size: 0.75rem;
+.malr {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.f15r {
+    font-size:1.5rem;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+.di {
+    display:inline;
+}
+
+.dib {
+    display:inline-block;
+}
+
+.fl {
+    float:left;
+}
+
+.ml1r {
+    margin-left: 0.5rem;
 }

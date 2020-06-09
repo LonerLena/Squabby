@@ -3,7 +3,6 @@
     height:12rem;
     background-color:rgb(87, 87, 87);
     display:block;
-    border-bottom: 2px solid white;
 }
 
 #pfponbanner {
@@ -11,7 +10,7 @@
     height:12rem;
     width:12rem;
     display:block;
-    border: 2px solid white;
+    border: 4px solid white;
     position:absolute;
     top:6rem;
     left:50%;
