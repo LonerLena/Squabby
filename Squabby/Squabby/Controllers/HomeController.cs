@@ -7,8 +7,5 @@ namespace Squabby.Controllers
         [Route("")]
         [Route("Index")]
         public IActionResult Index() => View();
-        
-        [Route("Login")]
-        public IActionResult Login() => View();
     }
 }
