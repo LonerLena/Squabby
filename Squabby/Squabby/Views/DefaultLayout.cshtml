@@ -18,11 +18,14 @@
         </a>
         @if (account == null)
         {
-            <a class="button" href="/login">Register</a>    
+            <a class="button" href="/login">Sign Up</a>    
         }
         else
         {
-            <a class="button">@account.Username</a> 
+            <a id="account" href="/u/@account.Username">
+                @account.Username
+                <img src="~/images/profile.png"/>
+            </a>
         }
         <form>
             <input placeholder="Search"/>
