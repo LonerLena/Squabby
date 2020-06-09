@@ -22,6 +22,10 @@ namespace Squabby.Database
                 .WithOne(x => x.Owner);
 
             mb.Entity<Board>()
+                .HasOne(x => x.Owner)
+                .WithMany(x => x.Boards);
+
+            mb.Entity<Board>()
                 .HasMany(x => x.PinnedThreads)
                 .WithOne(x => x.Board);
         }

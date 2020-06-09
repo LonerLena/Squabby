@@ -18,8 +18,9 @@ namespace Squabby.Controllers.User
         {
             await using var db = new SquabbyContext();
             var user = await db.Accounts.FirstOrDefaultAsync(x => x.Username == username);
-            if (user == null) return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find user {username}", $"User with the name {username} does not exists")); 
-            return View("~/Views/User/Profile.cshtml",user);
+            if (user == null)
+                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find user {username}", $"User with the name {username} does not exists"));
+            return View("~/Views/User/Profile.cshtml", user);
         }
     }
 }
