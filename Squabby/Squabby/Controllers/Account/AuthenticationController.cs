@@ -32,6 +32,7 @@ namespace Squabby.Controllers.Account
         /// <summary>
         /// Register new user account
         /// </summary>
+        [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register(Models.Account account)
         {
@@ -54,7 +55,6 @@ namespace Squabby.Controllers.Account
         /// <summary>
         /// Logout user
         /// </summary>
-        [HttpPost]
         [Route("Logout")]
         public IActionResult Logout()
         {

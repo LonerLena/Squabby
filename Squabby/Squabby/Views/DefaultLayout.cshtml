@@ -1,3 +1,9 @@
+@using Squabby.Helpers.Authentication
+
+@{
+    var account = Context.Session.GetAccount();
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +16,14 @@
         <a href="/" id="logo">
             Squabby
         </a>
-        <a class="button" href="/login">
-            Register
-        </a>
+        @if (account == null)
+        {
+            <a class="button" href="/login">Register</a>    
+        }
+        else
+        {
+            <a class="button">@account.Username</a> 
+        }
         <form>
             <input placeholder="Search"/>
         </form>
