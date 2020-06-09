@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="~/css/loginandregister.css">
     <script src="~/js/loginandregister.js"></script>
     <title>Login/Register</title>
-
     @if (Model != null)
     {
         @if (Model.Type == MessageType.LoginError)
@@ -36,7 +35,7 @@
 </head>
 <body>
 <div id="layer">
-    <h1 id="logo">Squabby</h1>
+     <a href="/" id="logo">Squabby</a>
     <div id="menu">
         <div id="selector">
             <h1 id="registerselector" onclick="showRegister();">Register</h1>

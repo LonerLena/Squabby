@@ -46,11 +46,16 @@ html, body {
     text-align: center;
     margin:0;
     font-family: "Montserrat";
+    font-weight: bold;
     position:absolute;
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
 }
+
+ #navbar form input::placeholder {
+    font-weight: normal;
+ }
 
 #navbar #logo {
     text-transform: uppercase;
