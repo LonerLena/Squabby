@@ -5,10 +5,11 @@ using Squabby.Database;
 using Squabby.Helpers.Authentication;
 using Squabby.Helpers.Cryptography;
 using Squabby.Models;
+using Squabby.Models.ViewModels;
 
-namespace Squabby.Controllers.Account
+namespace Squabby.Controllers.User
 {
-    public class AuthenticationController : Controller
+    public class UserController : Controller
     {
         [Route("Login")]
         public IActionResult Login() => View();
@@ -25,30 +26,30 @@ namespace Squabby.Controllers.Account
             if (account == null || !PBKDF2.Verify(account.Password, password))
                 return View(new Message(MessageType.LoginError));
 
-            HttpContext.Session.SetAccount(account); 
+            HttpContext.SetUser(account); 
             return RedirectToAction("Index", "Home"); 
         }
 
         /// <summary>
-        /// Register new user account
+        /// Register new user user
         /// </summary>
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register(Models.Account account)
+        public async Task<IActionResult> Register(Models.User user)
         {
-            if (string.IsNullOrEmpty(account.Username) || string.IsNullOrEmpty(account.Password))
+            if (string.IsNullOrEmpty(user.Username) || string.IsNullOrEmpty(user.Password))
                 return View("Login", new Message(MessageType.RegisterError));
 
             await using var db = new SquabbyContext();
-            if (db.Accounts.Any(x => x.Username == account.Username))
+            if (db.Accounts.Any(x => x.Username == user.Username))
                 return View("Login", new Message(MessageType.RegisterError, "User already exists"));
 
-            account.Role = Role.User;
-            account.Password = PBKDF2.Hash(account.Password);
-            db.Accounts.Add(account);
+            user.Role = Role.User;
+            user.Password = PBKDF2.Hash(user.Password);
+            db.Accounts.Add(user);
             await db.SaveChangesAsync();
             
-            HttpContext.Session.SetAccount(account);
+            HttpContext.SetUser(user);
             return RedirectToAction("Index", "Home");
         }
         
@@ -58,7 +59,7 @@ namespace Squabby.Controllers.Account
         [Route("Logout")]
         public IActionResult Logout()
         {
-            HttpContext.Session.LogoutAccount();
+            HttpContext.LogoutUser();
             return RedirectToAction("Index", "Home");
         }
     }

@@ -12,11 +12,11 @@ namespace Squabby.Models
         
         public string Description { get; set; }
         
-        public Account Owner { get; set; }
+        public User Owner { get; set; }
         
-        public List<Account> Followers { get; set; }
+        public List<User> Followers { get; set; }
         
-        public List<Account> Moderators { get; set; }
+        public List<User> Moderators { get; set; }
         
         public List<Thread> PinnedThreads { get; set; }
         

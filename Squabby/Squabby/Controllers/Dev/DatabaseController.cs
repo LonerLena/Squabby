@@ -17,10 +17,10 @@ namespace Squabby.Controllers.Dev
             await db.Database.EnsureDeletedAsync();
             await db.Database.EnsureCreatedAsync();
 
-            var adminAccount = new Models.Account {Username = "Admin", Password = PBKDF2.Hash("Admin"), Role = Role.Admin};
-            db.Accounts.Add(adminAccount);
+            db.Accounts.Add(new Models.User {Username = "Admin", Password = PBKDF2.Hash("Admin"), Role = Role.Admin});
+            db.Accounts.Add(new Models.User {Username = "User", Password = PBKDF2.Hash("User"), Role = Role.Admin});
             await db.SaveChangesAsync();
-            return "success";
+            return "New database is created";
         }
     }
 #endif

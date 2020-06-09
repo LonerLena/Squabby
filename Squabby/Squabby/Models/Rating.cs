@@ -4,7 +4,7 @@ namespace Squabby.Models
     {
         public int Id { get; set; }
 
-        public Account Account { get; set; }
+        public User User { get; set; }
         
         public int UserRating { get; set; }
     }

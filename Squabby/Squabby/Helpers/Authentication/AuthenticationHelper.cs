@@ -7,37 +7,37 @@ namespace Squabby.Helpers.Authentication
     public static class AuthenticationHelper
     {
         /// <summary>
-        /// Get current logged in account from session
+        /// Get current logged in user from session
         /// </summary>
-        /// <param name="session"></param>
-        /// <returns>account or null when not logged in</returns>
-        public static Account GetAccount(this ISession session)
+        /// <param name="context"></param>
+        /// <returns>user or null when not logged in</returns>
+        public static User GetUser(this HttpContext context)
         {
-            var accountBytes = session.Get("account"); 
-            if (accountBytes != null) return JsonSerializer.Deserialize<Account>(accountBytes);
+            var accountBytes = context.Session.Get("user"); 
+            if (accountBytes != null) return JsonSerializer.Deserialize<User>(accountBytes);
             else return null;
         }
 
         /// <summary>
-        /// Set account for current session
+        /// Set user for current session
         /// </summary>
-        /// <param name="session"></param>
-        /// <param name="account"></param>
-        public static void SetAccount(this ISession session, Account account) =>
-            session.Set("account", JsonSerializer.SerializeToUtf8Bytes(account));
-        
+        /// <param name="context"></param>
+        /// <param name="user"></param>
+        public static void SetUser(this HttpContext context, User user) =>
+            context.Session.Set("user", JsonSerializer.SerializeToUtf8Bytes(user));
+
         /// <summary>
         /// Determines whether current session has a logged in user 
         /// </summary>
-        /// <param name="session"></param>
-        /// <returns>account or null when not logged in</returns>
-        public static bool IsLoggedIn(this ISession session) => session.Get("account") != null;
+        /// <param name="context"></param>
+        /// <returns>user or null when not logged in</returns>
+        public static bool HasLoggedInUser(this HttpContext context) => context.Session.Get("user") != null;
 
         /// <summary>
-        /// Logout current account
+        /// Logout current user
         /// </summary>
-        /// <param name="session"></param>
-        public static void LogoutAccount(this ISession session) =>
-            session.Remove("account");
+        /// <param name="context"></param>
+        public static void LogoutUser(this HttpContext context) =>
+            context.Session.Remove("user");
     }
 }

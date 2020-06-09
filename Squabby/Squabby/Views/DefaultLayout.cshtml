@@ -1,9 +1,5 @@
 @using Squabby.Helpers.Authentication
 
-@{
-    var account = Context.Session.GetAccount();
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,25 +9,26 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div id="navbar">
-        <a href="/" id="logo">
-            Squabby
+<div id="navbar">
+    <a href="/" id="logo">
+        Squabby
+    </a>
+    @if (!Context.HasLoggedInUser())
+    {
+        <a class="button" href="/login">Sign Up</a>
+    }
+    else
+    {
+        var user = Context.GetUser();
+        <a id="account" href="/u/@user.Username">
+            @user.Username
+            <img src="~/images/profile.png"/>
         </a>
-        @if (account == null)
-        {
-            <a class="button" href="/login">Sign Up</a>    
-        }
-        else
-        {
-            <a id="account" href="/u/@account.Username">
-                @account.Username
-                <img src="~/images/profile.png"/>
-            </a>
-        }
-        <form>
-            <input placeholder="Search"/>
-        </form>
-    </div>
+    }
+    <form>
+        <input placeholder="Search"/>
+    </form>
+</div>
 
 @RenderBody()
 

@@ -26,7 +26,7 @@ namespace Squabby.Middleware
 
         public async Task InvokeAsync(HttpContext c)
         {
-            if (!c.Session.IsLoggedIn())
+            if (!c.HasLoggedInUser())
             {
                 if (_userOnlyUrls.ContainsPath(c.Request.Path) || _adminOnlyUrls.ContainsPath(c.Request.Path))
                     c.Response.Redirect("/login");
@@ -34,7 +34,7 @@ namespace Squabby.Middleware
                 return;
             }
             
-            if(_adminOnlyUrls.ContainsPath(c.Request.Path) && c.Session.GetAccount().Role != Role.Admin) return;
+            if(_adminOnlyUrls.ContainsPath(c.Request.Path) && c.GetUser().Role != Role.Admin) return;
             else await _next(c);
         }
     }

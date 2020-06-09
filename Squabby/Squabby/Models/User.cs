@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Squabby.Models
 {
-    public class Account
+    public class User
     {
         public int Id { get; set; }
 

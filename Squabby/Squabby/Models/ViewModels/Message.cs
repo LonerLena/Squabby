@@ -1,4 +1,4 @@
-namespace Squabby.Models
+namespace Squabby.Models.ViewModels
 {
     public class Message 
     {
