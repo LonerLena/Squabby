@@ -14,21 +14,21 @@
                 <h1 id="registerselector" onclick="showRegister();">Register</h1>
                 <h1 id="signinselector" class="unselected" onclick="showSignIn();">Sign In</h1>
             </div>
-            <form id=register>
+            <form id=register action="/account/register" method="post">
                 <h2 class="inputname">Username</h2>
-                <input type="username"/>
+                <input type="username" name="username"/>
                 <h2 class="inputname">Password</h2>
-                <input type="password"/>
+                <input name="password" type="password"/>
                 <h2 class="inputname">Verify Password</h2>
                 <input type="password"/>
                 <div class="line"></div>
                 <button>Sign Up</button>
             </form>
-            <form id=signin class="unselectedform">
+            <form id=signin action="/account/login" method="post" class="unselectedform">
                 <h2 class="inputname">Username</h2>
-                <input type="username"/>
+                <input name="username" type="username"/>
                 <h2 class="inputname">Password</h2>
-                <input type="password"/>
+                <input name="password" type="password"/>
                 <div class="line"></div>
                 <button>Sign In</button>
             </form>
