@@ -15,6 +15,16 @@
     font-weight:900;
 }
 
+html, body {
+    height:calc(100% - 2rem);
+    width: 100%;
+    padding:0;
+    margin: 2rem 0 0;
+    font-family: "Montserrat";
+    background-color: rgb(25,25,25);
+    color: white;
+}
+
 .button{
     border-radius:24px;
     border: 1px solid white;
@@ -35,4 +45,13 @@
 .button:hover {
     box-shadow: 0 0 10px white;
     transition: all 1s;
+}
+
+#maincontent {
+    height:100%;
+    width: 60rem;
+    background-color:black;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }

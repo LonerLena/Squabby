@@ -1,0 +1,35 @@
+#profilebanner {
+    width:100%;
+    height:15rem;
+    background-color:rgb(87, 87, 87);
+    display:block;
+    border-bottom: 2px solid white;
+}
+
+#pfponbanner {
+    background-color: rgb(238, 70, 70);
+    height:12rem;
+    width:12rem;
+    display:block;
+    border: 2px solid white;
+    position:absolute;
+    top:10rem;
+    left:50%;
+    transform: translateX(-50%);
+    color: black;
+    line-height:12rem;
+    text-align:center;
+}
+
+.profilepicture {
+    border-radius: 50%;
+}
+
+#aboutme {
+    margin-left: 1rem;
+    width:40%;
+}
+
+#aboutme h1 {
+    font-size:1.5rem;
+}
