@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="~/css/default.css">
     @if (ViewBag.Style != null)
     {
-        <link rel="stylesheet" type="text/css" href="@ViewBag.Style"> 
+        foreach (var style in ViewBag.Style)
+        {
+            <link rel="stylesheet" type="text/css" href="@style"> 
+        }
     }
     <script src="~/js/default.js"></script>
     <title>@(ViewBag.Title??"Squabby")</title>

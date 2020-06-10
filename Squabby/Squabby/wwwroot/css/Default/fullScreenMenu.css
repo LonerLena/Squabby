@@ -1,20 +1,3 @@
-@font-face {
-    font-family: 'Montserrat';
-    src:  url('../../fonts/Montserrat-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src:  url('../../fonts/Montserrat-Bold.ttf') format('truetype');
-    font-weight:bold;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src:  url('../../fonts/Montserrat-Black.ttf') format('truetype');
-    font-weight:900;
-}
-
 html, body {
     height: 100vh;
     width: 100vw;
@@ -35,7 +18,13 @@ body {
     background-attachment: fixed;;
 }
 
-#layer #logo {
+.layer {
+    height:100%;
+    width:100%;
+    background-color:rgba(39, 7, 54, 0.8)
+}
+
+.layer #logo {
     position: absolute;
     bottom:64px;
     right:64px;
@@ -48,17 +37,18 @@ body {
     cursor: pointer;
 }
 
-#layer #logo:visited {
+.layer .logo:visited {
     color: white;
 }
 
-#layer #logo:hover {
+.layer .logo:hover {
     opacity:0.75;
     text-shadow: 0 0 64px white;
     transition: all 1s;
 }
 
-#menu {
+.menu {
+    padding: 1rem;
     position:absolute;
     top:50%;
     left:50%;
@@ -71,23 +61,40 @@ body {
     overflow:hidden;
 }
 
-#menu h1 {
+.menu h1 {
     display:inline;
     transition: opacity 1s;
-    cursor: pointer;
 }
 
-#menu h1:first-of-type {
+.menu h1:first-of-type {
     margin-right: 4rem;
-    margin-left:24px;
+    margin-left: 24px;
 }
 
-#menu #selector {
-    text-align:left;
-    margin: 1rem 4rem 3rem 0;
+.menu .button {
+    padding: 0.64rem 24px;
+    width:23rem;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 24px;
+    text-transform: uppercase;
+    font-weight:bolder;
+    background-color: rgb(92, 21, 124);
+    color:white;
+    border:0;
+    transition:all 1s;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-#menu form input {
+.menu .button:hover {
+    background-color: white;
+    color: rgb(92, 21, 124);
+    transition:all 0.5s;
+}
+
+.menu input {
     font-family: "Montserrat";
     border-radius:24px;
     border: 0;
@@ -100,23 +107,7 @@ body {
     width:20rem;
 }
 
-#menu form {
-    margin-left: 24px;
-    margin-bottom:2rem;
-    transition: opacity 1s;
-}
-
-.unselected {
-    opacity:0.25;
-    transition: all 1s;
-}
-
-.unselectedform {
-    opacity:0;
-    transition: opacity 3s;
-}
-
-.inputname {
+.menu .inputname {
     color: white;
     font-weight: 900;
     opacity: 0.25;
@@ -127,43 +118,14 @@ body {
     margin-top:2rem;
 }
 
-#layer {
-    height:100%;
-    width:100%;
-    background-color:rgba(39, 7, 54, 0.8)
-}
-
-#menu form button {
-    padding: 0.64rem 24px;
-    width:23rem;
-    display:block;
-    border-radius: 24px;
-    text-transform: uppercase;
-    font-weight:bolder;
-    background-color: rgb(92, 21, 124);
-    color:white;
-    border:0;
-    transition:all 1s;
-    cursor: pointer;
-}
-
-#menu form button:hover {
-    background-color: white;
-    color: rgb(92, 21, 124);
-    transition:all 0.5s;
+#menu form {
+    margin-left: 24px;
+    margin-bottom:2rem;
+    transition: opacity 1s;
 }
 
 .line {
     height:1px;
     background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
     margin:1.5rem;
-}
-
-#register {
-    overflow:hidden;
-}
-
-#signin {
-    overflow:hidden;
-    display:none;
 }

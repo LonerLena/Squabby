@@ -13,6 +13,12 @@ namespace Squabby.Controllers.User
     {
         [Route("Login")]
         public IActionResult Login() => View();
+        
+        [Route("Register")]
+        public IActionResult Register() => View();
+        
+        [Route("TokenLogin")]
+        public IActionResult TokenLogin() => View();
 
         /// <summary>
         /// Login user with username and password
@@ -21,6 +27,7 @@ namespace Squabby.Controllers.User
         [Route("Login")]
         public async Task<ActionResult> Login(string username, string password)
         {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password)) return View(new Error(ErrorType.LoginError));
             await using var db = new SquabbyContext();
             var user = await db.Users.SingleOrDefaultAsync(x => x.Username == username);
             if (user == null || !PBKDF2.Verify(user.Password, password))
@@ -35,8 +42,9 @@ namespace Squabby.Controllers.User
         /// </summary>
         [HttpPost]
         [Route("TokenLogin")]
-        public async Task<ActionResult> Login(string token)
+        public async Task<ActionResult> TokenLogin(string token)
         {
+            if (string.IsNullOrWhiteSpace(token)) return View(new Error(ErrorType.LoginError));
             await using var db = new SquabbyContext();
             var user = await db.Users.SingleOrDefaultAsync(x => x.Token == token);
             if (user == null) return View(new Error(ErrorType.LoginError));
@@ -53,11 +61,11 @@ namespace Squabby.Controllers.User
         public async Task<IActionResult> Register(Models.User user)
         {
             if (string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
-                return View("Login", new Error(ErrorType.RegisterError));
+                return View(new Error(ErrorType.Unknown));
 
             await using var db = new SquabbyContext();
             if (await db.Users.AnyAsync(x => x.Username == user.Username))
-                return View("Login", new Error(ErrorType.RegisterError, "User already exists"));
+                return View(new Error(ErrorType.NameAlreadyUsedError, "User already exists"));
 
             user.Role = Role.User;
             user.Password = PBKDF2.Hash(user.Password);
@@ -72,13 +80,13 @@ namespace Squabby.Controllers.User
         /// Register anonymous user
         /// </summary>
         //[HttpPost]
-        [Route("Register")]
-        public async Task<IActionResult> Register()
+        [Route("TokenRegister")]
+        public async Task<IActionResult> TokenRegister()
         {
             var user = new Models.User {Role = Role.Anonymous, Token = Random.GetSecureRandomString(Models.User.TokenLength)};
             await using var db = new SquabbyContext();
 
-            if (await db.Users.AnyAsync(x => x.Token == user.Token)) return await Register();
+            if (await db.Users.AnyAsync(x => x.Token == user.Token)) return await TokenRegister();
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
             

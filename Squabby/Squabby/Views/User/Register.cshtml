@@ -4,12 +4,12 @@
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
     ViewBag.Style = new[] {"/css/Default/fullScreenMenu.css"};
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Register";
 
-    if (Model != null && Model.ErrorType == ErrorType.LoginError)
+    if (Model != null && Model.ErrorType == ErrorType.NameAlreadyUsedError)
     {
         <style>
-            .menu input{ 
+            #username{ 
               border-style: solid !important;
               border-width: 1px !important;
               border-color: red !important;
@@ -20,14 +20,16 @@
 
 <div class="layer">
     <div class="menu">
-        <h1>Login</h1>
-        <form action="/login" method="post">
+        <h1>Register</h1>
+        <form action="/register" method="post">
             <h2 class="inputname">Username</h2>
             <input id="username" type="username" name="username" required/>
             <h2 class="inputname">Password</h2>
             <input name="password" type="password" required/>
+            <h2 class="inputname">Verify Password</h2>
+            <input type="password" required/>
             <div class="line"></div>
-            <button class="button">Sign In</button>
+            <button class="button">Sign Up</button>
         </form>
     </div>
     <a href="/" id="logo">Squabby</a>

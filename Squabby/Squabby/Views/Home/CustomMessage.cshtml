@@ -2,11 +2,15 @@
 
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
-    ViewBag.Style = "/css/Home/customMessage.css";
+    ViewBag.Style = new[] {"/css/Default/fullScreenMenu.css"};
 }
 
-<div id="CustomMessage">
-    <h1>@Model.MessageString</h1>
-    <p>@Model.Description</p>
-    <a class="btn" href="/">Go Home</a>
+<div class="layer">
+    <div class="menu">
+        <h1>@Model.MessageString</h1>
+        <p>@Model.Description</p>
+        <div class="line"></div>
+        <a class="button" href="/">Go Home</a>
+    </div>
+    <a href="/" id="logo">Squabby</a>
 </div>
