@@ -1,0 +1,32 @@
+@using Squabby.Models.ViewModels
+@model Squabby.Models.ViewModels.Error
+
+@{
+    Layout = "~/Views/DefaultLayout.cshtml";
+    ViewBag.Style = new[] {"/css/Default/fullScreenMenu.css"};
+    ViewBag.Title = "Create board";
+
+    if (Model != null && Model.ErrorType == ErrorType.NameAlreadyUsedError)
+    {
+        <style>
+            .menu #name{ 
+              border-style: solid !important;
+              border-width: 1px !important;
+              border-color: red !important;
+            }
+        </style>
+    }
+}
+
+<div class="layer">
+    <div class="menu">
+        <h1>Create board</h1>
+        <form action="/createboard" method="post">
+            <h2 class="inputname">Board Name</h2>
+            <input id="name" name="board.name" required/>
+            <div class="line"></div>
+            <button class="button">Create board</button>
+        </form>
+    </div>
+    <a href="/" id="logo">Squabby</a>
+</div>

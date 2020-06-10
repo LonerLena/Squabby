@@ -2,25 +2,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
-using Squabby.Helpers;
 using Squabby.Helpers.Authentication;
 using Squabby.Models;
+using Squabby.Models.ViewModels;
 
 namespace Squabby.Controllers.Boards
 {
     public class BoardSettingsController : Controller
     {
         [Route("CreateBoard")]
-        public async Task<ViewResult> CreateBoard(string name)
+        public IActionResult CreateBoard() => View("~/Views/Board/CreateBoard.cshtml");
+        
+        /// <summary>
+        /// Create new board
+        /// </summary>
+        [HttpPost]
+        [Route("CreateBoard")]
+        public async Task<IActionResult> CreateBoard(Board board)
         {
+            if (string.IsNullOrWhiteSpace(board?.Name)) 
+                return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters));
+            
             await using var db = new SquabbyContext();
-            if (await db.Boards.AnyAsync(x => x.Name == name))
-                return this.Message($"Could not create board {name}", $"Board with the name {name} already exists");
+            if (await db.Boards.AnyAsync(x => x.Name == board.Name))
+                return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.NameAlreadyUsedError));
 
-            var user = await db.Users.SingleOrDefaultAsync(x => x.Username == HttpContext.GetUser().Username);
-            await db.AddAsync(new Board {Name = name, Owner = user });
+            board.Owner = await db.Users.SingleOrDefaultAsync(x => x.Username == HttpContext.GetUser().Username);
+            await db.AddAsync(board);
             await db.SaveChangesAsync();
-            return this.Message($"Created board {name}");
+            return Redirect($"/b/{board.Name}");
         } 
     }
 }

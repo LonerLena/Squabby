@@ -12,7 +12,7 @@ namespace Squabby.Controllers.Boards
     public class BoardController : Controller
     {
         [Route("{name}")]
-        public async Task<ViewResult> Overview(string name)
+        public async Task<IActionResult> Overview(string name)
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards
@@ -27,7 +27,7 @@ namespace Squabby.Controllers.Boards
         }
         
         [Route("{name}/Thread")]
-        public async Task<ViewResult> Thread(string name, int id)
+        public async Task<IActionResult> Thread(string name, int id)
         {
             await using var db = new SquabbyContext();
             var thread = await db.Threads
@@ -42,7 +42,7 @@ namespace Squabby.Controllers.Boards
         }
         
         [Route("{name}/CreateThread")]
-        public async Task<ViewResult> CreateThread(string name, Thread thread)
+        public async Task<IActionResult> CreateThread(string name, Thread thread)
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards.SingleOrDefaultAsync(x=>x.Name == name);

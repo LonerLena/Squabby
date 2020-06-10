@@ -25,7 +25,7 @@ namespace Squabby.Controllers.User
         /// </summary>
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password)) return View(new Error(ErrorType.LoginError));
             await using var db = new SquabbyContext();
@@ -42,7 +42,7 @@ namespace Squabby.Controllers.User
         /// </summary>
         [HttpPost]
         [Route("TokenLogin")]
-        public async Task<ActionResult> TokenLogin(string token)
+        public async Task<IActionResult> TokenLogin(string token)
         {
             if (string.IsNullOrWhiteSpace(token)) return View(new Error(ErrorType.LoginError));
             await using var db = new SquabbyContext();

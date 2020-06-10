@@ -14,7 +14,7 @@ namespace Squabby.Models.ViewModels
 
     public enum ErrorType
     {
-        NameAlreadyUsedError, LoginError,
+        NameAlreadyUsedError, LoginError, InvalidParameters,
         Unknown
     }
 }

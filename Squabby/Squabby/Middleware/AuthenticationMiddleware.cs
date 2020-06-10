@@ -20,7 +20,7 @@ namespace Squabby.Middleware
         /// <summary>
         /// HashSet with PathStrings that can only be accessed by users
         /// </summary>
-        private readonly HashSet<PathString> _userOnlyUrls = new HashSet<PathString>{  };
+        private readonly HashSet<PathString> _userOnlyUrls = new HashSet<PathString>{ "/CreateBoard"  };
         
         public AuthenticationMiddleware(RequestDelegate next) => _next = next;
 
