@@ -1,8 +1,9 @@
 @model Squabby.Models.User
+@using Squabby.Helpers.Authentication
 
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
-    ViewBag.Title = Model.Username;
+    ViewBag.Title = "Squabby: Profile of " + Model.Username;
 }
 
 <!DOCTYPE html>
@@ -10,19 +11,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="~/css/User/profile.css">
-    <title>Profile</title>
 </head>
 <body>
-    <div id="maincontent">
-        <div id="profilebanner">
-            
-        </div>
-        <div id="pfponbanner" class="profilepicture">
-            owo
-        </div>
-        <div id="aboutme">
-            <h1>@Model.Username</h1>
-            <p>The annoying admin that bans you.</p>
+    <div id="profilebanner">
+        <div id="banneroverlay"></div>
+        <img src="~/images/background.jpg">
+        <div id="profileinfo">
+            <h1 id="profileusername">@Model.Username</h1>
+            <p>I'm your friend. I can be nice from time to time.</p>
         </div>
     </div>
 </body>
