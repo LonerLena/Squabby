@@ -1,4 +1,4 @@
-#CustomError{
+#CustomMessage{
     position:absolute;
     padding: 1rem;
     top:30%;
@@ -6,13 +6,18 @@
     transform: translate(-50%, -50%);
     width:auto;
     text-align:center;
-    background-color: rgba(0,0,0,0.25);
+    background-color:black;
     border-radius:24px;
     transition: height 0.75s;
     overflow:hidden;
 }
 
-#CustomError .button{
+#CustomMessage h1, p{
+    font-family: "Montserrat";
+    color: white;
+}
+
+#CustomMessage .btn{
     display: inline-block;
     margin-top: 2rem;
 }

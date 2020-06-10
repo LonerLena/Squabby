@@ -2,9 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
-using Squabby.Helpers.Authentication;
+using Squabby.Helpers;
 using Squabby.Models;
-using Squabby.Models.ViewModels;
 
 namespace Squabby.Controllers.Boards
 {
@@ -20,8 +19,10 @@ namespace Squabby.Controllers.Boards
                 .Include(x=>x.Owner)
                 .Include(x=>x.Threads)
                 .SingleOrDefaultAsync(x => x.Name == name);
+            
             if (board == null) 
-                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find board {name}", $"Board with the name {name} does not exists"));
+                this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+            
             return View(board);
         }
         
@@ -32,8 +33,10 @@ namespace Squabby.Controllers.Boards
             var thread = await db.Threads
                 .Include(x=>x.Owner)
                 .SingleOrDefaultAsync(x=>x.Id == id);
+
+            if (thread == null) return this.Message($"Could not find a thread with the id {id}",
+                    $"Thread with the name {id} does not exists");
             
-            if(thread == null) return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find a thread with the id {id}", $"Thread with the name {id} does not exists"));
             await db.SaveChangesAsync();
             return View(thread);
         }
@@ -43,12 +46,14 @@ namespace Squabby.Controllers.Boards
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards.SingleOrDefaultAsync(x=>x.Name == name);
-            if(board == null)
-                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find board {name}", $"Board with the name {name} does not exists"));
+
+            if (board == null)
+                this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+            
             thread.Board = board;
             await db.Threads.AddAsync(thread);
             await db.SaveChangesAsync();
-            return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Created thread {thread.Title}"));
+            return this.Message($"Created thread {thread.Title}");
         }
     }
 }

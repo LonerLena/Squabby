@@ -24,7 +24,7 @@ namespace Squabby.Controllers.User
             await using var db = new SquabbyContext();
             var user = await db.Users.SingleOrDefaultAsync(x => x.Username == username);
             if (user == null || !PBKDF2.Verify(user.Password, password))
-                return View(new Message(MessageType.LoginError));
+                return View(new Error(ErrorType.LoginError));
 
             HttpContext.SetUser(user);
             return RedirectToAction("Index", "Home");
@@ -40,7 +40,7 @@ namespace Squabby.Controllers.User
         {
             await using var db = new SquabbyContext();
             var user = await db.Users.SingleOrDefaultAsync(x => x.Token == token);
-            if (user == null) return View(new Message(MessageType.LoginError));
+            if (user == null) return View(new Error(ErrorType.LoginError));
 
             HttpContext.SetUser(user);
             return RedirectToAction("Index", "Home");
@@ -54,11 +54,11 @@ namespace Squabby.Controllers.User
         public async Task<IActionResult> Register(Models.User user)
         {
             if (string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
-                return View("Login", new Message(MessageType.RegisterError));
+                return View("Login", new Error(ErrorType.RegisterError));
 
             await using var db = new SquabbyContext();
             if (await db.Users.AnyAsync(x => x.Username == user.Username))
-                return View("Login", new Message(MessageType.RegisterError, "User already exists"));
+                return View("Login", new Error(ErrorType.RegisterError, "User already exists"));
 
             user.Role = Role.User;
             user.Password = PBKDF2.Hash(user.Password);

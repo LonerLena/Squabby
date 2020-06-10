@@ -85,6 +85,27 @@ td:nth-child(even) {
     border-radius: 8px;
 }
 
+.btn{
+    border-radius:24px;
+    border: 1px solid white;
+    height:1rem;
+    padding: 0.48rem 24px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Montserrat";
+    font-weight: bolder;
+    line-height: 1rem;
+    font-size: 1rem;
+    transform: translateY(-50%);
+    transition: all 1s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px white;
+    transition: all 1s;
+}
+
 .blk {
     display:block;
 }

@@ -1,5 +1,5 @@
 @using Squabby.Models.ViewModels
-@model Squabby.Models.ViewModels.Message
+@model Squabby.Models.ViewModels.Error
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
     <title>Login/Register</title>
     @if (Model != null)
     {
-        if (Model.Type == MessageType.LoginError)
+        if (Model.ErrorType == ErrorType.LoginError)
         {
             <style>
                 #signin input
@@ -20,7 +20,7 @@
                 }
             </style> 
         }
-        else if (Model.Type == MessageType.RegisterError)
+        else if (Model.ErrorType == ErrorType.RegisterError)
         {
             <style>
                 #register input
