@@ -1,75 +1,169 @@
 #navbar {
-    position: fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:48px;
-    text-align:center;
-    background-color: black;
-    border-radius: 0 32px 32px 0;
+    transition:all 0.5s;
 }
 
-#navbar #navtop svg {
-    height:20px;
-    width:20px;
-    opacity:0.75;
-    margin-left:auto;
-    display:block;
-    margin-right:auto;
-    transition:all 1s;
+#navbar * {
+    transition: all 0.5s;
 }
 
-#navbar #navtop svg:hover {
-    opacity:1;
-    transform: scale(1.1);
+#navbar * * {
+    transition: all 0.5s;
 }
 
-#navbar #navtop {
-    position:absolute;
-    top:24px;
-    width:100%;
+@media only screen and (orientation: landscape) {
+    #navbar {
+        position: fixed;
+        top:0;
+        left:0;
+        height:100%;
+        width:48px;
+        text-align:center;
+        background-color: black;
+        border-radius: 0 32px 32px 0;
+    }
+    
+    #navbar #navtop svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:block;
+        margin-right:auto;
+        transition:all 1s;
+        padding: 0.75rem;
+    }
+    
+    #navbar #navtop svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
+    
+    #navbar #navtop {
+        position:absolute;
+        top:16px;
+        width:100%;
+    }
+    
+    #navbar #navbottom {
+        position:absolute;
+        bottom:16px;
+        width:100%;
+    }
+    
+    #navbar #navbottom svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:block;
+        margin-right:auto;
+        transition:all 1s;
+        padding: 0.75rem;
+    }
+    
+    #navbar #navbottom svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
+    
+    #navbar #navmid {
+        position:absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:100%;
+    }
+    #navbar #navmid svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:block;
+        margin-right:auto;
+        transition:all 1s;
+        margin-top:1rem;
+    }
+    
+    #navbar #navmid svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
 }
 
-#navbar #navbottom {
-    position:absolute;
-    bottom:24px;
-    width:100%;
-}
+@media only screen and (orientation: portrait) {
+    #navbar {
+        position: fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:48px;
+        text-align:center;
+        background-color: black;
+        border-radius: 32px 32px 0 0;
+    }
 
-#navbar #navbottom svg {
-    height:20px;
-    width:20px;
-    opacity:0.75;
-    margin-left:auto;
-    display:block;
-    margin-right:auto;
-    transition:all 1s;
-    margin-top:1rem;
-}
-
-#navbar #navbottom svg:hover {
-    opacity:1;
-    transform: scale(1.1);
-}
-
-#navbar #navmid {
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-    width:100%;
-}
-#navbar #navmid svg {
-    height:20px;
-    width:20px;
-    opacity:0.75;
-    margin-left:auto;
-    display:block;
-    margin-right:auto;
-    transition:all 1s;
-    margin-top:1rem;
-}
-
-#navbar #navmid svg:hover {
-    opacity:1;
-    transform: scale(1.1);
+    #navbar #navtop svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:block;
+        margin-right:auto;
+        transition:all 1s;
+        padding: 0.75rem;
+    }
+    
+    #navbar #navtop svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
+    
+    #navbar #navtop {
+        position:absolute;
+        left:16px;
+        height:100%;
+    }
+    
+    #navbar #navbottom {
+        position:absolute;
+        right:16px;
+        height:100%;
+    }
+    
+    #navbar #navbottom svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:inline-block;
+        margin-right:auto;
+        transition:all 1s;
+        padding: 0.75rem;
+    }
+    
+    #navbar #navbottom svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
+    
+    #navbar #navmid {
+        position:absolute;
+        left:50%;
+        transform: translateX(-50%);
+        width:100%;
+    }
+    #navbar #navmid svg {
+        height:20px;
+        width:20px;
+        opacity:0.75;
+        margin-left:auto;
+        display:block;
+        margin-right:auto;
+        transition:all 1s;
+        margin-top:1rem;
+    }
+    
+    #navbar #navmid svg:hover {
+        opacity:1;
+        transform: scale(1.1);
+    }
 }
