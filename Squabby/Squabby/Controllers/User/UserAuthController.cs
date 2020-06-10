@@ -33,9 +33,8 @@ namespace Squabby.Controllers.User
         /// <summary>
         /// Login with token 
         /// </summary>
-        //[HttpPost]
         [HttpPost]
-        [Route("Login")]
+        [Route("TokenLogin")]
         public async Task<ActionResult> Login(string token)
         {
             await using var db = new SquabbyContext();
