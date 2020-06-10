@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
-using Squabby.Models.ViewModels;
+using Squabby.Helpers;
 
 namespace Squabby.Controllers.User
 {
@@ -18,8 +18,7 @@ namespace Squabby.Controllers.User
         {
             await using var db = new SquabbyContext();
             var user = await db.Users.SingleOrDefaultAsync(x => x.Username == username);
-            if (user == null)
-                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not find user {username}", $"User with the name {username} does not exists"));
+            if (user == null) return this.Message($"Could not find user {username}", $"User with the name {username} does not exists");
             return View("~/Views/User/Profile.cshtml", user);
         }
     }

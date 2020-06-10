@@ -2,11 +2,11 @@
 
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
-    ViewBag.Style = "/css/Home/customError.css";
+    ViewBag.Style = "/css/Home/customMessage.css";
 }
 
-<div id="CustomError">
+<div id="CustomMessage">
     <h1>@Model.MessageString</h1>
     <p>@Model.Description</p>
-    <a class="button" href="/">Go Home</a>
+    <a class="btn" href="/">Go Home</a>
 </div>
