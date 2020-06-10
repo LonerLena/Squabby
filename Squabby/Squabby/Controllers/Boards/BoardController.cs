@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
 using Squabby.Helpers;
+using Squabby.Helpers.Authentication;
 using Squabby.Models;
 
 namespace Squabby.Controllers.Boards
@@ -11,6 +12,9 @@ namespace Squabby.Controllers.Boards
     [Route("board")]
     public class BoardController : Controller
     {
+        /// <summary>
+        /// Show board
+        /// </summary>
         [Route("{name}")]
         public async Task<IActionResult> Overview(string name)
         {
@@ -20,12 +24,13 @@ namespace Squabby.Controllers.Boards
                 .Include(x=>x.Threads)
                 .SingleOrDefaultAsync(x => x.Name == name);
             
-            if (board == null) 
-                return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
-            
+            if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
             return View(board);
         }
         
+        /// <summary>
+        /// Show thread
+        /// </summary>
         [Route("{name}/Thread")]
         public async Task<IActionResult> Thread(string name, int id)
         {
@@ -41,15 +46,20 @@ namespace Squabby.Controllers.Boards
             return View(thread);
         }
         
+        /// <summary>
+        /// Create new thread
+        /// ! Middleware does not check for permissions
+        /// </summary>
         [Route("{name}/CreateThread")]
         public async Task<IActionResult> CreateThread(string name, Thread thread)
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards.SingleOrDefaultAsync(x=>x.Name == name);
 
-            if (board == null)
-                this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
-            
+            if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+            else if (!HttpContext.HasLoggedInUser()) return this.Message("Login before creating a thread");
+
+            thread.Owner = HttpContext.GetUser();
             thread.Board = board;
             await db.Threads.AddAsync(thread);
             await db.SaveChangesAsync();
