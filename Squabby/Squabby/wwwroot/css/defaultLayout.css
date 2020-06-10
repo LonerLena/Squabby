@@ -20,6 +20,7 @@
         text-align:center;
         background-color: black;
         border-radius: 0 32px 32px 0;
+        z-index: 1000;
     }
     
     #navbar #navtop svg {
