@@ -1,34 +1,28 @@
 #profilebanner {
+    position: absolute;
+    top:0;
+    left: -48px;
+    height: 36vh;
+    width:calc(100% + 48px);
+}
+
+#profilebanner img {
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
     width:100%;
-    height:12rem;
-    background-color:rgb(87, 87, 87);
+    object-fit: cover;
+    object-position: bottom;
+}
+
+#profilebanner #banneroverlay {
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
     display:block;
-}
-
-#pfponbanner {
-    background-color: rgb(238, 70, 70);
-    height:12rem;
-    width:12rem;
-    display:block;
-    border: 4px solid white;
-    position:absolute;
-    top:6rem;
-    left:50%;
-    transform: translateX(-50%);
-    color: black;
-    line-height:12rem;
-    text-align:center;
-}
-
-.profilepicture {
-    border-radius: 50%;
-}
-
-#aboutme {
-    margin-left: 1rem;
-    width:40%;
-}
-
-#aboutme h1 {
-    font-size:1.5rem;
+    z-index: 1;
+    background-image: linear-gradient(to top, rgb(245,245,245), transparent);
 }
