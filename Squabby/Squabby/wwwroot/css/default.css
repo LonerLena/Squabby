@@ -16,10 +16,10 @@
 }
 
 html, body {
-    height:calc(100% - 3rem);
+    height:100%;
     width: 100%;
     padding:0;
-    margin: 2rem 0 0;
+    margin:0;
     font-family: "Montserrat";
     background-color: rgb(245, 245, 245);
     color: #434343;
