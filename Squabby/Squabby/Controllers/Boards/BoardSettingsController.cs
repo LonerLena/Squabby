@@ -11,15 +11,16 @@ namespace Squabby.Controllers.Boards
     public class BoardSettingsController : Controller
     {
         [Route("CreateBoard")]
-        public async Task<ViewResult> CreateBoard(string boardName)
+        public async Task<ViewResult> CreateBoard(string name)
         {
             await using var db = new SquabbyContext();
-            if(await db.Boards.AnyAsync(x=>x.Name == boardName))
-                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not create board {boardName}", $"Board with the name {boardName} already exists"));
+            if(await db.Boards.AnyAsync(x=>x.Name == name))
+                return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Could not create board {name}", $"Board with the name {name} already exists"));
 
-            await db.AddAsync(new Board {Name = boardName, Owner = HttpContext.GetUser() });
+            var user = await db.Users.SingleOrDefaultAsync(x => x.Username == HttpContext.GetUser().Username);
+            await db.AddAsync(new Board {Name = name, Owner = user });
             await db.SaveChangesAsync();
-            return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Created board {boardName}"));
+            return View("~/Views/Home/CustomError.cshtml", new Message(MessageType.Error, $"Created board {name}"));
         } 
     }
 }

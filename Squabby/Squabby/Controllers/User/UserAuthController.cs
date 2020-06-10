@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +22,7 @@ namespace Squabby.Controllers.User
         public async Task<ActionResult> Login(string username, string password)
         {
             await using var db = new SquabbyContext();
-            var account = db.Accounts.FirstOrDefault(x => x.Username == username);
+            var account = await db.Users.SingleOrDefaultAsync(x => x.Username == username);
             if (account == null || !PBKDF2.Verify(account.Password, password))
                 return View(new Message(MessageType.LoginError));
 
@@ -42,12 +41,12 @@ namespace Squabby.Controllers.User
                 return View("Login", new Message(MessageType.RegisterError));
 
             await using var db = new SquabbyContext();
-            if (await db.Accounts.AnyAsync(x => x.Username == user.Username))
+            if (await db.Users.AnyAsync(x => x.Username == user.Username))
                 return View("Login", new Message(MessageType.RegisterError, "User already exists"));
 
             user.Role = Role.User;
             user.Password = PBKDF2.Hash(user.Password);
-            await db.Accounts.AddAsync(user);
+            await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
             
             HttpContext.SetUser(user);

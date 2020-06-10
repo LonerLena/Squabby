@@ -5,4 +5,9 @@
     ViewBag.Title = Model.Name;
 }
 
-<h1>Model.Name</h1>
+<h1>@Model.Name</h1>
+
+@foreach (var thread in Model.Threads)
+{
+    <h1>@thread.Title</h1>
+}

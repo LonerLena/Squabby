@@ -18,8 +18,6 @@ namespace Squabby.Models
         public Role Role { get; set; }
 
         public ICollection<Board> Boards { get; set; }
-        
-        public ICollection<Thread> Threads { get; set; }
     }
 
     public enum Role

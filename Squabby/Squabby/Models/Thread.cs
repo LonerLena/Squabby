@@ -15,9 +15,9 @@ namespace Squabby.Models
 
         public DateTime creationDate { get; set; }
         
+        public User Owner { get; set; }
+        
         public Board Board { get; set; }
-
-        public ICollection<Rating> Ratings { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
     }
