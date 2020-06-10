@@ -21,7 +21,7 @@ namespace Squabby.Controllers.Boards
                 .SingleOrDefaultAsync(x => x.Name == name);
             
             if (board == null) 
-                this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+                return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
             
             return View(board);
         }
