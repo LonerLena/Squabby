@@ -32,7 +32,6 @@ html, body {
     }
     td:nth-child(even) {
         width:30%;
-        background-color:white;
     }
 }
 
@@ -45,6 +44,43 @@ html, body {
         display:none;
     }
 }
+
+#banner {
+    position: relative;
+    margin-left: -48px;
+    height: 36vh;
+    width:calc(100% + 48px);
+}
+
+#banner img {
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+#banner #banneroverlay {
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    display:block;
+    z-index: 1;
+    background-image: linear-gradient(to top, rgb(245,245,245), transparent);
+}
+
+#banner #info {
+    position:absolute;
+    bottom:5vh;
+    left:10vw;
+    color:#434343;
+    z-index: 2;
+}
+
 #page {
     width:100%;
     height:100%;
@@ -54,12 +90,13 @@ html, body {
 td {
     text-align:center;
     vertical-align: top;
-    width:70%;
+    width:50%;
+    padding-left:10%;
+    padding-right:10%;
 }
 
 td:nth-child(even) {
     width:30%;
-    background-color:white;
 }
 
 .like {
@@ -83,6 +120,48 @@ td:nth-child(even) {
     box-shadow: 0 0 32px rgba(0,0,0,0.16);
     padding:2rem;
     border-radius: 8px;
+    text-align:left;
+}
+
+.threaddata {
+    position:relative;
+    margin-bottom: 1rem;
+}
+
+.threaddata p { 
+    margin:0;
+}
+
+.threadinfo {
+    position: absolute;
+    left:0;
+    color: #868686;
+    font-size:12px;
+}
+
+.threadinfo a {
+    text-decoration: none;
+    transition: color 1s;
+    color: #868686
+}
+
+.threadinfo a:hover {
+    color: #434343
+}
+
+.threadinfo a:visited {
+    color: #868686
+}
+
+.threadinfo a:visited:hover {
+    color: #434343
+}
+
+.threaddate {
+    position: absolute;
+    right:0;
+    font-size:12px;
+    color:#868686;
 }
 
 .blk {
@@ -124,4 +203,8 @@ td:nth-child(even) {
 
 .fwb {
     font-weight:bold;
+}
+
+.mb1r {
+    margin-bottom: 1rem;
 }

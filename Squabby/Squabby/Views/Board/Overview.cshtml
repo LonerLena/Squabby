@@ -2,12 +2,50 @@
 
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = "Squabby: Board " + Model.Name;
 }
 
-<h1>@Model.Name</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="banner">
+        <div id="banneroverlay"></div>
+        <img src="~/images/background.jpg">
+        <div id="info">
+            <h1 id="boardname">@Model.Name</h1>
+            <p>I'm a board. If you want to have a laugh, you're at the right place.</p>
+        </div>
+    </div>
 
-@foreach (var thread in Model.Threads)
+    <table id="page">
+        <tbody>
+            <tr>
+                <td>
+                    @foreach (var thread in Model.Threads)
+                    {
+                        <div class="box mb1r">
+                            <div class="threaddata">
+                                <p class="threadinfo"><a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by @(thread.Owner?.Username ?? "Anonymous User")</p>
+                                <p class="threaddate">@thread.creationDate</p>
+                            </div>
+                            <h1 class="threadtitle">@thread.Title</h1>
+                            <p class="threadcontent">@thread.Content</p>
+                        </div>
+                    }
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+@* @foreach (var thread in Model.Threads)
 {
     <h1>@thread.Title</h1>
-}
+} *@
