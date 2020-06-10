@@ -50,6 +50,7 @@ html, body {
     margin-left: -48px;
     height: 36vh;
     width:calc(100% + 48px);
+    margin-bottom:1rem;
 }
 
 #banner img {
