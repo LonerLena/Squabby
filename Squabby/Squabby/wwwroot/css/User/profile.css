@@ -26,3 +26,11 @@
     z-index: 1;
     background-image: linear-gradient(to top, rgb(245,245,245), transparent);
 }
+
+#profilebanner #profileinfo {
+    position:absolute;
+    bottom:5vh;
+    left:10vw;
+    color:#434343;
+    z-index: 2;
+}
