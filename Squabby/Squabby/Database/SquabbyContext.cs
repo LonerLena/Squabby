@@ -20,9 +20,6 @@ namespace Squabby.Database
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<User>()
-                .HasMany(x => x.Boards)
-                .WithOne(x => x.Owner);
         }
     }
 }
