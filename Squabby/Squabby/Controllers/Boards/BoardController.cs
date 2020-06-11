@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,28 @@ namespace Squabby.Controllers.Boards
             
             if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
             return View(board);
+        }
+        
+        [Route("{name}/GetThreads")]
+        public async Task<JsonResult> GetThreads(string name, int index, int amount = 10)
+        {
+            await using var db = new SquabbyContext();
+            var threads = await db.Threads
+                .Include(x=>x)
+                .Where(x=> x.Board.Name == name)
+                .Select(t=>new Models.Thread
+                {
+                    Title = t.Title,
+                    Content = t.Content,
+                    CreationDate = t.CreationDate,
+                    Owner = new Models.User{ Username = t.Owner.Username }
+                })
+                .Skip(index)
+                .Take(amount)
+                .ToArrayAsync();
+
+            if (threads == null) return Json(new {status = "error"});
+            else return Json(new { threads  });
         }
     }
 }

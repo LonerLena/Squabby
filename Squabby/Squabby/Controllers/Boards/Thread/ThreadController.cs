@@ -56,7 +56,7 @@ namespace Squabby.Controllers.Boards.Thread
             await db.SaveChangesAsync();
             return this.Message($"Created thread {thread.Title}"); // TODO
         }
-        
+
         [SquabbyAuthorize]
         //[HttpPost] TODO
         [Route("{name}/{threadId}/Like")]
