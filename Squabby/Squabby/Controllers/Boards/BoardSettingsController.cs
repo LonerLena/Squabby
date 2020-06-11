@@ -33,6 +33,6 @@ namespace Squabby.Controllers.Boards
             await db.AddAsync(board);
             await db.SaveChangesAsync();
             return Redirect($"/b/{board.Name}");
-        } 
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Squabby.Models
 {
@@ -8,14 +9,13 @@ namespace Squabby.Models
         [Key]
         public string Name { get; set; }
         
-        public string Rules { get; set; }
-
         [MaxLength(MaxDescriptionLength)] 
-        public const int MaxDescriptionLength = 64;
         public string Description { get; set; }
+        public const int MaxDescriptionLength = 64;
         
-        public virtual User Owner { get; set; }
+        [NotNull]
+        public User Owner { get; set; }
         
-        public virtual ICollection<Thread> Threads { get; set; }
+        public ICollection<Thread> Threads { get; set; }
     }
 }

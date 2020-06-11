@@ -7,41 +7,25 @@ namespace Squabby.Models
 {
     public class User
     {
-        /// <summary>
-        /// Primary key of user
-        /// </summary>
+        [Key]
         public int Id { get; set; }
 
-        /// <summary>
-        /// Unique username of user
-        /// </summary>
+        [MaxLength(MaxUsernameLength)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Username { get; set; }
+        public const int MaxUsernameLength = 32;
         
-        /// <summary>
-        /// Hash of user password
-        /// </summary>
         public string Password { get; set; }
 
-        /// <summary>
-        /// User role
-        /// </summary>
         [NotNull]
         public UserRole UserRole { get; set; }
         
-        /// <summary>
-        /// User token, used for login by anonymous users
-        /// </summary>
-        public const int TokenLength = 64;
         [StringLength(TokenLength)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public String Token { get; set; }
-
+        public const int TokenLength = 64;
     }
 
-    /// <summary>
-    /// All user roles
-    /// </summary>
     public enum UserRole
     {
         Admin, User, Anonymous

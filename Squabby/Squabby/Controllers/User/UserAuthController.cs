@@ -60,8 +60,10 @@ namespace Squabby.Controllers.User
         [Route("Register")]
         public async Task<IActionResult> Register(Models.User user)
         {
-            if (string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
-                return View(new Error(ErrorType.Unknown));
+            if (string.IsNullOrWhiteSpace(user.Username) 
+                || user.Username.Length > Models.User.MaxUsernameLength
+                || string.IsNullOrWhiteSpace(user.Password))
+                return View(new Error(ErrorType.InvalidParameters));
 
             await using var db = new SquabbyContext();
             if (await db.Users.AnyAsync(x => x.Username == user.Username))
