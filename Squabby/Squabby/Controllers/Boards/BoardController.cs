@@ -34,12 +34,12 @@ namespace Squabby.Controllers.Boards
             var threads = await db.Threads
                 .Include(x=>x)
                 .Where(x=> x.Board.Name == name)
-                .Select(t=>new Models.Thread
+                .Select(t=>new 
                 {
-                    Title = t.Title,
-                    Content = t.Content,
-                    CreationDate = t.CreationDate,
-                    Owner = new Models.User{ Username = t.Owner.Username }
+                    t.Title,
+                    t.Content,
+                    t.CreationDate,
+                    t.Owner.Username
                 })
                 .Skip(index)
                 .Take(amount)
