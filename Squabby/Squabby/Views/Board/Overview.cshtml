@@ -33,6 +33,7 @@
                             </div>
                             <h1 class="threadtitle">@thread.Title</h1>
                             <p class="threadcontent">@thread.Content</p>
+                            <div onclick="postData('/b/@thread.Board.Name/thread=@thread.Id');" class="dislike dib fr"></div><div onclick="postData('')" class="like dib fr"></div>
                         </div>
                     }
                 </td>
