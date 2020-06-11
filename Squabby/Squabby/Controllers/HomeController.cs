@@ -7,5 +7,8 @@ namespace Squabby.Controllers
         [Route("")]
         [Route("Index")]
         public IActionResult Index() => View();
+        
+        [Route("AccessDenied")]
+        public IActionResult AccessDenied() => View("~/Views/Error/AccessDenied.cshtml");
     }
 }

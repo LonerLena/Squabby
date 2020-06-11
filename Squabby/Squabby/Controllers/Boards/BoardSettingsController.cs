@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Squabby.Authorization;
 using Squabby.Database;
 using Squabby.Helpers.Authentication;
 using Squabby.Models;
@@ -8,6 +9,7 @@ using Squabby.Models.ViewModels;
 
 namespace Squabby.Controllers.Boards
 {
+    [SquabbyAuthorize]
     public class BoardSettingsController : Controller
     {
         [Route("CreateBoard")]

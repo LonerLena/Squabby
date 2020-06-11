@@ -67,7 +67,7 @@ namespace Squabby.Controllers.User
             if (await db.Users.AnyAsync(x => x.Username == user.Username))
                 return View(new Error(ErrorType.NameAlreadyUsedError, "User already exists"));
 
-            user.Role = Role.User;
+            user.UserRole = UserRole.User;
             user.Password = PBKDF2.Hash(user.Password);
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
@@ -83,7 +83,7 @@ namespace Squabby.Controllers.User
         [Route("TokenRegister")]
         public async Task<IActionResult> TokenRegister()
         {
-            var user = new Models.User {Role = Role.Anonymous, Token = Random.GetSecureRandomString(Models.User.TokenLength)};
+            var user = new Models.User {UserRole = UserRole.Anonymous, Token = Random.GetSecureRandomString(Models.User.TokenLength)};
             await using var db = new SquabbyContext();
 
             if (await db.Users.AnyAsync(x => x.Token == user.Token)) return await TokenRegister();

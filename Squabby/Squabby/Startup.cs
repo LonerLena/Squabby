@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Squabby.Middleware;
 
 namespace Squabby
 {
@@ -19,7 +18,6 @@ namespace Squabby
             app.UseResponseCompression();
             app.UseSession();
             app.UseRouting();
-            app.UseSquabbyAuthentication();
             
             app.UseEndpoints(endpoints =>
             {

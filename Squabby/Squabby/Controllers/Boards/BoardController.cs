@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Squabby.Authorization;
 using Squabby.Database;
 using Squabby.Helpers;
 using Squabby.Helpers.Authentication;
@@ -48,8 +49,8 @@ namespace Squabby.Controllers.Boards
         
         /// <summary>
         /// Create new thread
-        /// ! Middleware does not check for permissions
         /// </summary>
+        [SquabbyAuthorize]
         [Route("{name}/CreateThread")]
         public async Task<IActionResult> CreateThread(string name, Thread thread)
         {

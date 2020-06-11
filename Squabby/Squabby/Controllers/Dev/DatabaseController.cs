@@ -17,8 +17,8 @@ namespace Squabby.Controllers.Dev
             await db.Database.EnsureDeletedAsync();
             await db.Database.EnsureCreatedAsync();
 
-            db.Users.Add(new Models.User {Username = "Admin", Password = PBKDF2.Hash("Admin"), Role = Role.Admin});
-            db.Users.Add(new Models.User {Username = "User", Password = PBKDF2.Hash("User"), Role = Role.Admin});
+            db.Users.Add(new Models.User {Username = "Admin", Password = PBKDF2.Hash("Admin"), UserRole = UserRole.Admin});
+            db.Users.Add(new Models.User {Username = "User", Password = PBKDF2.Hash("User"), UserRole = UserRole.User});
             await db.SaveChangesAsync();
             return "New database is created";
         }

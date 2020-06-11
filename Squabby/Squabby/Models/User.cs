@@ -27,7 +27,7 @@ namespace Squabby.Models
         /// User role
         /// </summary>
         [NotNull]
-        public Role Role { get; set; }
+        public UserRole UserRole { get; set; }
         
         /// <summary>
         /// User token, used for login by anonymous users
@@ -42,7 +42,7 @@ namespace Squabby.Models
     /// <summary>
     /// All user roles
     /// </summary>
-    public enum Role
+    public enum UserRole
     {
         Admin, User, Anonymous
     }
