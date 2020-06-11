@@ -44,9 +44,23 @@ We'll have an indicator of how trending a post is. More on this *later*.
 
 
 
-## How can i start using Squabby?
+## How can I start using Squabby?
 
 Currently, Squabby is undergoing heavy development. You can view progress in our board. When Squabby goes live, we will let you know.
+
+
+
+## Progress!
+
+- [x] Sign in and sign up as regular user.
+- [x] Sign in and sign up as anonymous user.
+- [ ] A home page with threads from boards you follow.
+- [x] Board page where you can see the threads.
+- [ ] User profile.
+- [ ] Customization features.
+- [ ] Image server.
+- [ ] Private message.
+- [ ] Follow a profile or board.
 
 
 
@@ -55,5 +69,5 @@ Currently, Squabby is undergoing heavy development. You can view progress in our
 - [ ] Creating a safe and secure social media platform.
 - [x] Rethinking how social media should be to be consumer friendly.
 - [ ] Giving you the freedom back.
-- [ ] Be fully anonymous so you can give an opinion freely.
+- [x] Be fully anonymous so you can give an opinion freely.
 - [ ] Giving you customization features so you can express your creativity.
