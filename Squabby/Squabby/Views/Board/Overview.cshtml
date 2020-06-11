@@ -26,15 +26,17 @@
                 <td>
                     @foreach (var thread in Model.Threads)
                     {
-                        <div class="box mb1r">
-                            <div class="threaddata">
-                                <p class="threadinfo"><a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by @(thread.Owner?.Username ?? "Anonymous User")</p>
-                                <p class="threaddate">@thread.CreationDate</p>
+                        <a href="/b/@thread.Board.Name/thread?id=@thread.Id">
+                            <div class="box mb1r">
+                                <div class="threaddata">
+                                    <p class="threadinfo"><a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by @if(thread.Owner != null){<a href="/u/@thread.Owner.Username">u/@thread.Owner.Username</a>} else {<text>Anonymous User</text>}</p>
+                                    <p class="threaddate">@thread.CreationDate</p>
+                                </div>
+                                <h1 class="threadtitle">@thread.Title</h1>
+                                <p class="threadcontent">@thread.Content</p>
+                                <div onclick="postData('/b/@thread.Board.Name/thread=@thread.Id');" class="dislike dib fr"></div><div onclick="postData('')" class="like dib fr"></div>
                             </div>
-                            <h1 class="threadtitle">@thread.Title</h1>
-                            <p class="threadcontent">@thread.Content</p>
-                            <div onclick="postData('/b/@thread.Board.Name/thread=@thread.Id');" class="dislike dib fr"></div><div onclick="postData('')" class="like dib fr"></div>
-                        </div>
+                        </a>
                     }
                 </td>
                 <td>
