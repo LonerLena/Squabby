@@ -9,7 +9,9 @@ namespace Squabby.Models
         public string Name { get; set; }
         
         public string Rules { get; set; }
-        
+
+        [MaxLength(MaxDescriptionLength)] 
+        public const int MaxDescriptionLength = 64;
         public string Description { get; set; }
         
         public virtual User Owner { get; set; }

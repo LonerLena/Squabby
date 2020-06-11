@@ -25,7 +25,7 @@
             <h2 class="inputname">Board Name</h2>
             <input id="name" name="board.name" required/>
             <h2 class="inputname">Board Description</h2>
-            <textarea name="board.description"></textarea>
+            <input name="board.description" maxlength="@Squabby.Models.Board.MaxDescriptionLength"/>
             <div class="line"></div>
             <button class="button">Create board</button>
         </form>
