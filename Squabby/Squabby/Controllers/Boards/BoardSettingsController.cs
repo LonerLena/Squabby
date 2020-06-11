@@ -22,7 +22,7 @@ namespace Squabby.Controllers.Boards
         [Route("CreateBoard")]
         public async Task<IActionResult> CreateBoard(Board board)
         {
-            if (string.IsNullOrWhiteSpace(board?.Name)) 
+            if (string.IsNullOrWhiteSpace(board?.Name) || board.Description.Length > Board.MaxDescriptionLength) 
                 return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters));
             
             await using var db = new SquabbyContext();

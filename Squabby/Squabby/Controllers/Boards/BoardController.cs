@@ -21,8 +21,8 @@ namespace Squabby.Controllers.Boards
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards
-                .Include(x=>x.Owner)
                 .Include(x=>x.Threads)
+                .ThenInclude(x=>x.Owner)
                 .SingleOrDefaultAsync(x => x.Name == name);
             
             if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
