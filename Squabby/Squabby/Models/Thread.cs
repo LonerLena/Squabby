@@ -15,10 +15,10 @@ namespace Squabby.Models
 
         public DateTime creationDate { get; set; }
         
-        public User Owner { get; set; }
+        public virtual User Owner { get; set; }
         
-        public Board Board { get; set; }
+        public virtual Board Board { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace Squabby.Models
         
         public string Description { get; set; }
         
-        public User Owner { get; set; }
+        public virtual User Owner { get; set; }
         
-        public ICollection<Thread> Threads { get; set; }
+        public virtual ICollection<Thread> Threads { get; set; }
     }
 }
