@@ -1,3 +1,4 @@
+@using Squabby.Models
 @model Squabby.Models.Board
 
 @{
@@ -11,44 +12,49 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div id="banner">
-        <div id="banneroverlay"></div>
-        <img src="~/images/background.jpg">
-        <div id="info">
-            <h1 id="boardname">@Model.Name</h1>
-            <p>@Model.Description</p>
-        </div>
+<div id="banner">
+    <div id="banneroverlay"></div>
+    <img src="~/images/background.jpg">
+    <div id="info">
+        <h1 id="boardname">@Model.Name</h1>
+        <p>@Model.Description</p>
     </div>
+</div>
+<table id="page">
+    <tbody>
+    <tr>
+        <td>
+            @foreach (var thread in Model.Threads)
+            {
+                <a href="/b/@thread.Board.Name/thread?id=@thread.Id">
+                    <div class="box mb1r">
+                        <div class="threaddata">
+                            <p class="threadinfo">
+                                <a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by
+                                @if (string.IsNullOrEmpty(thread.Owner.Username))
+                                {
+                                    <a href="/u/@thread.Owner.Username">u/@thread.Owner.Username</a>
+                                }
+                                else
+                                {
+                                    <text>Anonymous User</text>
+                                }
+                            </p>
+                            <p class="threaddate">@thread.CreationDate</p>
+                        </div>
+                        <h1 class="threadtitle">@thread.Title</h1>
+                        <p class="threadcontent">@thread.Content</p>
+                        <div onclick="postData('/b/@thread.Board.Name/@thread.Id/like');" class="dislike dib fr"></div>
+                        <div onclick="postData('/b/@thread.Board.Name/@thread.Id/dislike')" class="like dib fr"></div>
+                    </div>
+                </a>
+            }
+        </td>
+        <td>
 
-    <table id="page">
-        <tbody>
-            <tr>
-                <td>
-                    @foreach (var thread in Model.Threads)
-                    {
-                        <a href="/b/@thread.Board.Name/thread?id=@thread.Id">
-                            <div class="box mb1r">
-                                <div class="threaddata">
-                                    <p class="threadinfo"><a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by @if(thread.Owner != null){<a href="/u/@thread.Owner.Username">u/@thread.Owner.Username</a>} else {<text>Anonymous User</text>}</p>
-                                    <p class="threaddate">@thread.CreationDate</p>
-                                </div>
-                                <h1 class="threadtitle">@thread.Title</h1>
-                                <p class="threadcontent">@thread.Content</p>
-                                <div onclick="postData('/b/@thread.Board.Name/thread=@thread.Id');" class="dislike dib fr"></div><div onclick="postData('')" class="like dib fr"></div>
-                            </div>
-                        </a>
-                    }
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
-
-@* @foreach (var thread in Model.Threads)
-{
-    <h1>@thread.Title</h1>
-} *@

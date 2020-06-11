@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,26 @@ namespace Squabby.Controllers.Boards.Thread
             await db.Threads.AddAsync(thread);
             await db.SaveChangesAsync();
             return this.Message($"Created thread {thread.Title}"); // TODO
+        }
+        
+        [SquabbyAuthorize]
+        //[HttpPost] TODO
+        [Route("{name}/{threadId}/Like")]
+        public async Task<IActionResult> LikeThread(string name, int threadId)
+        {
+            Console.WriteLine("Like thread");
+            // TODO
+            return null;
+        }
+        
+        [SquabbyAuthorize]
+        //[HttpPost] TODO
+        [Route("{name}/{threadId}/Dislike")]
+        public async Task<IActionResult> DislikeThread(string name, int threadId)
+        {
+            Console.WriteLine("Dislike thread");
+            // TODO
+            return null;
         }
     }
 }
