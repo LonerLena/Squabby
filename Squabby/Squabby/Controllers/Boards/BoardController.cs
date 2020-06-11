@@ -56,11 +56,11 @@ namespace Squabby.Controllers.Boards
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards.SingleOrDefaultAsync(x=>x.Name == name);
-
             if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
-            else if (!HttpContext.HasLoggedInUser()) return this.Message("Login before creating a thread");
 
-            thread.Owner = HttpContext.GetUser();
+            var user = HttpContext.GetUser();
+            db.Attach(user);
+            thread.Owner = user;
             thread.Board = board;
             await db.Threads.AddAsync(thread);
             await db.SaveChangesAsync();
