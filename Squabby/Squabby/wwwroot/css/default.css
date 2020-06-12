@@ -110,6 +110,12 @@ td:nth-child(even) {
     border-left: 3px solid #434343;
     border-top: 3px solid #434343;
     transform: rotate(45deg) translateY(0.25rem);
+    transition: all 1s;
+}
+
+.like:hover {
+    border-color: #792a96;
+    transform: rotate(45deg) translateY(0.25rem) scale(1.25);
 }
 
 .dislike {
@@ -118,6 +124,12 @@ td:nth-child(even) {
     border-right: 3px solid #434343;
     border-bottom: 3px solid #434343;
     transform: rotate(45deg) translateY(-0.25rem);
+    transition:all 1s;
+}
+
+.dislike:hover {
+    border-color: #792a96;
+    transform: rotate(45deg) translateY(-0.25rem) scale(1.25);
 }
 
 .box {
@@ -141,6 +153,7 @@ td:nth-child(even) {
 
 .threaddata p { 
     margin:0;
+    user-select: none;
 }
 
 .threadinfo {
@@ -247,4 +260,8 @@ td:nth-child(even) {
 
 .fr {
     float:right;
+}
+
+.clickable {
+    cursor:pointer;
 }

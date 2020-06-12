@@ -27,7 +27,7 @@
             @foreach (var thread in Model.Threads)
             {
                 <a href="/b/@thread.Board.Name/thread?id=@thread.Id">
-                    <div class="box mb1r">
+                    <div class="box mb1r clickable">
                         <div class="threaddata">
                             <p class="threadinfo">
                                 <a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by
