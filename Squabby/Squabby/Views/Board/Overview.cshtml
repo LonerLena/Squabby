@@ -30,8 +30,8 @@
                     <div class="box mb1r clickable">
                         <div class="threaddata">
                             <p class="threadinfo">
-                                <a href="/b/@thread.Board.Name">b/@thread.Board.Name</a> by
-                                @if (string.IsNullOrEmpty(thread.Owner.Username))
+                                <a href="/b/@thread.Board.Name">b/@thread.Board.Name</a>
+                                @if (!string.IsNullOrEmpty(thread.Owner.Username))
                                 {
                                     <a href="/u/@thread.Owner.Username">u/@thread.Owner.Username</a>
                                 }
