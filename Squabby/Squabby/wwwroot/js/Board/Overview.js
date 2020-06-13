@@ -32,9 +32,9 @@ function createElement(thread) {
     threadDate.textContent = thread.creationDate;
     threadTitle.textContent = thread.title;
     threadContent.textContent = thread.content;
-    likeButton.onclick = function() { postData(`/b/${thread.board}/${thread.id}/like`) };
+    likeButton.onclick = function(event) { postData(`/b/${thread.board}/${thread.id}/like`); event.stopPropagation();};
     likeButton.className= "like dib fr";
-    dislikeButton.onclick = function() { postData(`/b/${thread.board}/${thread.id}/dislike`) };
+    dislikeButton.onclick = function(event) { postData(`/b/${thread.board}/${thread.id}/dislike`); event.stopPropagation(); };
     dislikeButton.className= "dislike dib fr";
 
     threadInfo.appendChild(threadInfoBoard);
