@@ -248,3 +248,5 @@ td:nth-child(even) {
 .fr {
     float:right;
 }
+
+.indent:before { content: "\00a0 "; }

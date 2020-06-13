@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Squabby.Database;
@@ -21,6 +22,19 @@ namespace Squabby.Controllers.Dev
             db.Users.Add(new Models.User {Username = "User", Password = PBKDF2.Hash("User"), UserRole = UserRole.User});
             await db.SaveChangesAsync();
             return "New database is created";
+        }
+        
+        [Route("CreateThreads")]
+        public async Task<string> CreateThreads(string board, int amount)
+        {
+            await using var db = new SquabbyContext();
+
+            var b = db.Boards.First(x => x.Name == board);
+            for (int i = 0; i < amount; i++)
+                db.Threads.Add(new Thread{Title = $"thread title {i}", Content = "thread content", Board = b});
+
+            await db.SaveChangesAsync();
+            return "threads are created";
         }
     }
 #endif

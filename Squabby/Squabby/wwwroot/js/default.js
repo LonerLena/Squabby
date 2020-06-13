@@ -4,9 +4,10 @@ function postData(url) {
     xhr.send();
 }
 
-function getData(url, callback) {
+function getJson(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
+    xhr.responseType = 'json';
     xhr.onload = function() {
       var status = xhr.status;
       if (status === 200) {
