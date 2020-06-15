@@ -7,6 +7,18 @@ function LoadThreads(board, start) {
     });
 }
 
+function getTime(date) {
+    var date = new Date(date);
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var day = date.getDate();
+
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+
+    return [year,month,day].join('-') + " " + [hour,minute].join(':');
+}
+
 function createElement(thread) {
     let threadBox = document.createElement("div");
     let threadData = document.createElement("div");
@@ -30,7 +42,7 @@ function createElement(thread) {
     threadInfoUsername.className = "di indent";
     if(thread.username != null) threadInfoUsername.href = `/u/${thread.owner}`;
     threadDate.className = "threaddate";
-    threadDate.textContent = thread.creationDate;
+    threadDate.textContent = getTime(thread.creationDate);
     threadTitle.textContent = thread.title;
     threadContent.textContent = thread.content;
     likeButton.onclick = function(event) { postData(`/b/${thread.board}/like?boardId=${thread.boardId}&id=${thread.id}`); event.stopPropagation();};
