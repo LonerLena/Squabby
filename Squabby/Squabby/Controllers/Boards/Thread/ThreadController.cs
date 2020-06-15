@@ -66,18 +66,12 @@ namespace Squabby.Controllers.Boards.Thread
         [SquabbyAuthorize]
         [HttpPost]
         [Route("{name}/Like")]
-        public async Task<IActionResult> LikeThread(Models.Thread thread)
-        {
-            return await Rate(thread, 1);
-        }
+        public async Task<IActionResult> LikeThread(Models.Thread thread) => await Rate(thread, 1);
 
         [SquabbyAuthorize]
         [HttpPost]
         [Route("{name}/Dislike")]
-        public async Task<IActionResult> DislikeThread(Models.Thread thread)
-        {
-            return await Rate(thread, -1);
-        }
+        public async Task<IActionResult> DislikeThread(Models.Thread thread) => await Rate(thread, -1);
 
         private async Task<JsonResult> Rate(Models.Thread thread, short ratingValue)
         {
@@ -93,19 +87,29 @@ namespace Squabby.Controllers.Boards.Thread
                     rating.Owner.Id == user.Id && rating.BoardId == thread.BoardId && rating.ThreadId == thread.Id)
             }).FirstOrDefaultAsync(t => t.BoardId == thread.BoardId && t.Id == thread.Id);
 
-            if (t.UserRating != null)
+            
+            thread = new Models.Thread {Id = t.Id, BoardId = t.BoardId};
+
+            if (t.UserRating == null)
+            {
+                AddRating(thread, db, ratingValue);
+                await db.Ratings.AddAsync(new Rating {UserId = user.Id, BoardId = t.BoardId, ThreadId = t.Id, Value = ratingValue});
+            }
+            else
             {
                 t.UserRating.Value = ratingValue;
                 db.Ratings.Update(t.UserRating);
+                AddRating(thread, db, (short)(ratingValue + t.UserRating.Value * -1));
             }
-            else db.Ratings.Add(new Rating {UserId = user.Id, BoardId = t.BoardId, ThreadId = t.Id, Value = ratingValue});
-            
-            thread = new Models.Thread {Id = t.Id, BoardId = t.BoardId, Rating = t.Rating + ratingValue};
-            db.Threads.Attach(thread);
-            db.Entry(thread).Property(x => x.Rating).IsModified = true;
 
             await db.SaveChangesAsync();
             return Json(new {status = "success"});
+        }
+
+        private static void AddRating(Models.Thread thread, SquabbyContext db, short value)
+        {
+            thread.Rating = value;
+            db.Threads.Attach(thread).Property(x=>x.Rating).IsModified = true;
         }
     }
 }

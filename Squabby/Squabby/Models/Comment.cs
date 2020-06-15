@@ -17,9 +17,9 @@ namespace Squabby.Models
         [Key]
         public int ThreadId { get; set; }
         
-        [NotNull]
         [Timestamp]
-        public DateTime CreationDate { get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime CreationDate { get; set; }
 
         [NotNull]
         [MaxLength(MaxContentLength)]

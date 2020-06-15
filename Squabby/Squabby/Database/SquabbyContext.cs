@@ -42,9 +42,6 @@ namespace Squabby.Database
                 .WithMany(x => x.Ratings)
                 .HasForeignKey(x => x.UserId);
             mb.Entity<Rating>().HasKey(x => new {x.UserId, x.BoardId, x.ThreadId});
-            
-            mb.Entity<Thread>().HasIndex(x => new {x.Id, x.BoardId, x.Rating});
-            mb.Entity<Board>().HasIndex(x => x.Name);
         }
     }
 }

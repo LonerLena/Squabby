@@ -15,9 +15,8 @@ namespace Squabby.Models
         [Key]
         public int BoardId { get; set; }
         
-        [NotNull]
-        [Timestamp]
-        public DateTime CreationDate { get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime CreationDate { get; set; }
         
         [NotNull]
         public User Owner { get; set; }

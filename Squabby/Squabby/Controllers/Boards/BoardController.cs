@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Squabby.Database;
@@ -33,7 +35,7 @@ namespace Squabby.Controllers.Boards
             await using var db = new SquabbyContext();
             var threads = await db.Threads
                 .Where(x => x.Board.Name == name)
-                .OrderByDescending(t=> t.Rating)
+                .OrderByDescending(t=> t.Rating - (t.CreationDate.Year * 365 + t.CreationDate.Day - (DateTime.Now.Year * 365 + DateTime.Now.Day) * 1000))
                 .Select(t => new
                 {
                     t.Id,
