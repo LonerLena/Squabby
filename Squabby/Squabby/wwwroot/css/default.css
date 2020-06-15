@@ -32,12 +32,8 @@ html, body {
     }
     td:nth-child(even) {
         width:50%;
-        padding-left:1.5%;
-        padding-right: 1.5%;
     }
     td:nth-child(odd) {
-        padding-left:1.5%;
-        padding-right: 1.5%;
         width:25%;
     }
 }
@@ -51,6 +47,11 @@ html, body {
         display:none;
     }
 
+}
+
+td {
+    padding-left:1.5%;
+    padding-right: 1.5%;
 }
 
 #banner {
