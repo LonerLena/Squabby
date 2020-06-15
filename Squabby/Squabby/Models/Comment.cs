@@ -7,8 +7,6 @@ namespace Squabby.Models
 {
     public class Comment
     {
-        public Comment() => CreationDate = DateTime.Now;
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -20,6 +18,7 @@ namespace Squabby.Models
         public int ThreadId { get; set; }
         
         [NotNull]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreationDate { get; }
 
         [NotNull]
