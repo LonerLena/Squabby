@@ -13,7 +13,7 @@ LoadThreads('@Model.Name', 0);
 if(window.addEventListener){
     window.addEventListener('scroll', function(ev) {
         const st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-        if((st+document.documentElement.clientHeight)>=document.documentElement.scrollHeight){
+        if((st+document.documentElement.clientHeight)>=document.documentElement.scrollHeight-100){
             LoadThreads('@Model.Name', start);
             start += @Squabby.Controllers.Boards.BoardController.threadsChuckCount;
         }
