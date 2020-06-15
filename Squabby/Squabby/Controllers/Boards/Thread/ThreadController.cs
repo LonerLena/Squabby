@@ -26,6 +26,7 @@ namespace Squabby.Controllers.Boards.Thread
             var thread = await db.Threads
                 .Include(x => x.Owner)
                 .Include(x => x.Comments)
+                .Include(x=>x.Board)
                 .SingleOrDefaultAsync(x => x.Board.Name == name && x.Id == threadId);
 
             if (thread == null)

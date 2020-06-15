@@ -19,13 +19,14 @@ function createElement(thread) {
     let dislikeButton = document.createElement("div");
     let likeButton = document.createElement("div");
 
-    threadBox.className = "box mb1r clickable";
+    threadBox.className = "box thread mb1r clickable";
     threadBox.onclick = function() { window.location = `/b/${thread.board}/${thread.id}` };
     threadData.className = "threaddata";
     threadInfo.className = "threadinfo";
     threadInfoBoard.textContent = `b/${thread.board}`;
     threadInfoBoard.href = `/b/${thread.board}`;
-    threadInfoUsername.textContent = thread.owner || "Anonymous";
+    if (thread.owner !== null) threadInfoUsername.textContent = `u/${thread.owner}`;
+    else threadInfoUsername.textContent = "by Anonymous";
     threadInfoUsername.className = "di indent";
     if(thread.username != null) threadInfoUsername.href = `/u/${thread.owner}`;
     threadDate.className = "threaddate";

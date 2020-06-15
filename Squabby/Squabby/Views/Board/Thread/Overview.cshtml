@@ -2,7 +2,49 @@
 
 @{
     Layout = "~/Views/DefaultLayout.cshtml";
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = @Model.Title;
 }
 
-<h1>@Model.Title</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Board/Thread/thread.css">
+</head>
+<body>
+<table id="page">
+    <tbody>
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+            <div class="box mt1r">
+                <div class="threaddata">
+                    <p class="threadinfo">
+                        <a href="/b/@Model.Board.Name">b/@Model.Board.Name</a>
+                        <a href="/u/@Model.Owner.Username" class="di indent">u/@Model.Owner.Username</a>
+                    </p>
+                    <p class="threaddate">@Model.CreationDate</p>
+                </div>
+                <h1>@Model.Title</h1>
+                <p>@Model.Content</p>
+                <div class="dislike dib fr"></div>
+                <div class="like dib fr"></div>
+            </div>
+            <div class="comment">
+                @* <p>Leave a comment as <a href="#">u/test</a></p> *@
+                <form action="/b/@Model.Board.Name/@Model.Id/PostComment" method="POST">
+                    <textarea name="content" placeholder="Leave a comment"></textarea>
+                </form>
+                <button class="commentbutton" type="submit">Submit</button>
+            </div>
+            @* Load comments with JavaScript *@
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
