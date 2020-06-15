@@ -24,11 +24,12 @@ namespace Squabby.Controllers.Boards.Thread
             var thread = await db.Threads
                 .Include(x=>x.Owner)
                 .Include(x=>x.Comments)
+                .Include(x=>x.Board)
                 .SingleOrDefaultAsync(x=> x.Board.Name == name && x.Id == threadId);
 
             if (thread == null) return this.Message($"Could not find a thread with the id {threadId}",
                 $"Thread with the name {threadId} does not exists");
-            return View("~/Views/Board/Thread/Overview.cshtml");
+            return View("~/Views/Board/Thread/Overview.cshtml", thread);
         }
         
         /// <summary>

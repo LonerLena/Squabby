@@ -232,6 +232,10 @@ td {
     margin-top: 0;
 }
 
+.mt1r {
+    margin-top: 1rem;
+}
+
 .di {
     display:inline;
 }

@@ -1,0 +1,58 @@
+.box {
+    border-radius: 8px 8px 0 0;
+}
+
+.comment {
+    background-color: #eee;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 0 32px rgba(0,0,0,0.16);
+    clip-path: inset(0 -32px -32px -32px);
+    padding-bottom: 48px;
+}
+
+.comment p {
+    margin:0;
+    padding:1rem;
+    padding-bottom:0;
+    text-align:left;
+}
+
+.comment form {
+    width:100%;
+}
+
+.comment form textarea {
+    box-sizing: border-box;
+    width:100%;
+    border:0;
+    background-color: white;
+    height:8rem;
+    padding:1rem;
+    resize: none;
+    font-family: 'Montserrat';
+}
+
+.commentbutton {
+    border-radius:24px;
+    border: 1px solid #434343;
+    color: #434343;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: transparent;
+    transition: 1s;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-size: 12px;
+    float:right;
+    margin-right:0.75rem;
+    margin-top: calc(40px - 2rem);
+}
+
+.commentbutton:hover {
+    background-color: #434343;
+    color: white;
+}
