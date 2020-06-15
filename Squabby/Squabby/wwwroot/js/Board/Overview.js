@@ -19,7 +19,7 @@ function createElement(thread) {
     let dislikeButton = document.createElement("div");
     let likeButton = document.createElement("div");
 
-    threadBox.className = "box mb1r clickable";
+    threadBox.className = "box thread mb1r clickable";
     threadBox.onclick = function() { window.location = `/b/${thread.board}/${thread.id}` };
     threadData.className = "threaddata";
     threadInfo.className = "threadinfo";

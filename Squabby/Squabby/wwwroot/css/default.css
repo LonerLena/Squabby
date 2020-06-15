@@ -31,7 +31,14 @@ html, body {
         width: calc(100% - 48px);
     }
     td:nth-child(even) {
-        width:30%;
+        width:50%;
+        padding-left:2.5%;
+        padding-right: 2.5%;
+    }
+    td:nth-child(odd) {
+        padding-left:2.5%;
+        padding-right: 2.5%;
+        width:25%;
     }
 }
 
@@ -40,9 +47,10 @@ html, body {
         margin-bottom: 48px;
         height: calc(100% - 48px);
     }
-    td:nth-child(even) {
+    td:nth-child(odd) {
         display:none;
     }
+
 }
 
 #banner {
@@ -95,13 +103,6 @@ html, body {
 td {
     text-align:center;
     vertical-align: top;
-    width:50%;
-    padding-left:10%;
-    padding-right:10%;
-}
-
-td:nth-child(even) {
-    width:30%;
 }
 
 .like {
@@ -141,7 +142,7 @@ td:nth-child(even) {
     transition:all 1s;
 }
 
-.box:hover {
+.thread:hover {
     box-shadow: 0 0 32px rgba(0,0,0,0.32);
     transform: scale(1.025);
 }
