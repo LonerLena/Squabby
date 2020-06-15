@@ -36,6 +36,13 @@ html, body {
     td:nth-child(odd) {
         width:25%;
     }
+    #banner {
+        position: relative;
+        margin-left: -48px;
+        height: 36vh;
+        width:calc(100% + 48px);
+        margin-bottom:1rem;
+    }
 }
 
 @media only screen and (orientation: portrait) {
@@ -46,20 +53,19 @@ html, body {
     td:nth-child(odd) {
         display:none;
     }
+    #banner {
+        position: relative;
+        margin-left: -48px;
+        height: 24vh;
+        width:calc(100% + 48px);
+        margin-bottom:1rem;
+    }
 
 }
 
 td {
     padding-left:1.5%;
     padding-right: 1.5%;
-}
-
-#banner {
-    position: relative;
-    margin-left: -48px;
-    height: 36vh;
-    width:calc(100% + 48px);
-    margin-bottom:1rem;
 }
 
 #banner img {

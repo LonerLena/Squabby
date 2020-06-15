@@ -25,7 +25,7 @@ namespace Squabby.Controllers.Boards
             return View(board);
         }
 
-        public const int ThreadsChuckCount = 25;
+        public const int ThreadsChuckCount = 10;
 
         [Route("{name}/GetThreads")]
         public async Task<JsonResult> GetThreads(string name, int start)
