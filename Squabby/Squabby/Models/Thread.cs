@@ -11,15 +11,14 @@ namespace Squabby.Models
         public Thread() => CreationDate = DateTime.Now;
 
         [Key]
-        [Column(Order=1)]
-        public Board Board { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         
         [Key]
-        [Column(Order=2)]
-        public int Id { get; set; }
-
+        public int BoardId { get; set; }
+        
         [NotNull]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; }
         
         [NotNull]
         public User Owner { get; set; }
@@ -31,8 +30,15 @@ namespace Squabby.Models
 
         [MaxLength(MaxContentLength)]
         public string Content { get; set; }
-        public const int MaxContentLength = 5000; 
+        public const int MaxContentLength = 5000;
+
+        public int Rating { get; set; }
+
+        /* Relations */
+        public Board Board { get; set; }
         
         public ICollection<Comment> Comments { get; set; }
+        
+        public ICollection<Rating> Ratings { get; set; }
     }
 }

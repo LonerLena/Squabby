@@ -19,12 +19,10 @@ namespace Squabby.Controllers.Boards.Thread.Post
         /// </summary>
         [SquabbyAuthorize]
         //[HttpPost] TODO
-        [Route("{name}/{threadId}/PostComment")]
+        [Route("{name}/{threadId}/Post")]
         public async Task<IActionResult> PostComment(string name, int threadId, Comment comment)
         {
-            if (string.IsNullOrWhiteSpace(comment.Title)
-                || string.IsNullOrWhiteSpace(comment.Content)
-                || comment.Title.Length > Models.Comment.MaxTitleLength
+            if (string.IsNullOrWhiteSpace(comment.Content)
                 || comment.Content.Length > Models.Comment.MaxContentLength)
                 return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters)); // TODO
             
@@ -38,7 +36,7 @@ namespace Squabby.Controllers.Boards.Thread.Post
             comment.Thread = thread;
             await db.Comments.AddAsync(comment);
             await db.SaveChangesAsync();
-            return this.Message($"Created comment {comment.Title}"); // TODO
+            return this.Message($"Created comment {comment.Content}"); // TODO
         }
     }
 }

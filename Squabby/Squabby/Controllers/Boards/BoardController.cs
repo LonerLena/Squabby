@@ -19,33 +19,37 @@ namespace Squabby.Controllers.Boards
         {
             await using var db = new SquabbyContext();
             var board = await db.Boards.SingleOrDefaultAsync(x => x.Name == name);
-            
-            if (board == null) return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+
+            if (board == null)
+                return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
             return View(board);
         }
-        
-        public const int threadsChuckCount = 25;
+
+        public const int ThreadsChuckCount = 25;
+
         [Route("{name}/GetThreads")]
         public async Task<JsonResult> GetThreads(string name, int start)
         {
             await using var db = new SquabbyContext();
             var threads = await db.Threads
-                .Where(x=> x.Board.Name == name)
-                .Select(t=>new 
+                .Where(x => x.Board.Name == name)
+                .OrderByDescending(t=> t.Rating)
+                .Select(t => new
                 {
                     t.Id,
                     t.Title,
                     t.Content,
                     t.CreationDate,
                     Owner = t.Owner.Username,
-                    Board = name
+                    t.BoardId,
+                    Board = name,
                 })
                 .Skip(start)
-                .Take(threadsChuckCount)
+                .Take(ThreadsChuckCount)
                 .ToArrayAsync();
 
             if (threads == null) return Json(new {status = "error"});
-            else return Json(new { threads  });
+            else return Json(new {threads});
         }
     }
 }
