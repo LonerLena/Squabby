@@ -10,27 +10,27 @@ namespace Squabby.Models
         public Comment() => CreationDate = DateTime.Now;
 
         [Key]
-        [Column(Order=1)]
-        public Thread Thread { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         
         [Key]
-        [Column(Order=2)]
-        public int Id { get; set; }
-
-        [NotNull]
-        public User Owner { get; set; }
+        public int BoardId { get; set; }
+        
+        [Key]
+        public int ThreadId { get; set; }
         
         [NotNull]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; }
 
-        [NotNull] 
-        [MaxLength(MaxTitleLength)]
-        public string Title { get; set; }
-        public const int MaxTitleLength = 64;
-        
         [NotNull]
         [MaxLength(MaxContentLength)]
         public string Content { get; set; }
         public const int MaxContentLength = 5000;
+        
+        /* Relations */
+        [NotNull]
+        public User Owner { get; set; }
+        
+        public Thread Thread { get; set; }
     }
 }
