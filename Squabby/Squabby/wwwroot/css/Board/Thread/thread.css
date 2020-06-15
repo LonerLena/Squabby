@@ -50,6 +50,7 @@
     float:right;
     margin-right:0.75rem;
     margin-top: calc(40px - 2rem);
+    cursor: pointer;
 }
 
 .commentbutton:hover {

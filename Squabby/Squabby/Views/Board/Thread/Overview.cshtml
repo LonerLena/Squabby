@@ -33,10 +33,10 @@
             </div>
             <div class="comment">
                 @* <p>Leave a comment as <a href="#">u/test</a></p> *@
-                <form>
-                    <textarea placeholder="Leave a comment"></textarea>
+                <form action="/b/@Model.Board.Name/@Model.Id/PostComment" method="POST">
+                    <textarea name="content" placeholder="Leave a comment"></textarea>
                 </form>
-                <button class="commentbutton">Submit</button>
+                <button class="commentbutton" type="submit">Submit</button>
             </div>
             @* Load comments with JavaScript *@
         </td>
