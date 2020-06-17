@@ -5,7 +5,7 @@ namespace Squabby.Models
     public class Rating
     {
         [Key]
-        public int BoardId { get; set; }
+        public short BoardId { get; set; }
         
         [Key]
         public int ThreadId { get; set; }

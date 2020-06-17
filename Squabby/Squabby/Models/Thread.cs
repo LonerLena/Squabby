@@ -13,7 +13,7 @@ namespace Squabby.Models
         public int Id { get; set; }
         
         [Key]
-        public int BoardId { get; set; }
+        public short BoardId { get; set; }
         
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreationDate { get; set; }

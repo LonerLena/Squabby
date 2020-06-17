@@ -23,11 +23,8 @@ namespace Squabby.Models
         
         [StringLength(TokenLength)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public String Token { get; set; }
+        public string Token { get; set; }
         public const int TokenLength = 64;
-        
-        /* Relations */
-        public ICollection<Rating> Ratings { get; set; }
     }
 
     public enum UserRole

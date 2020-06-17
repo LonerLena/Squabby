@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Squabby.Helpers.Config;
 using Squabby.Models;
+using Thread = Squabby.Models.Thread;
 
 namespace Squabby.Database
 {
@@ -21,26 +22,25 @@ namespace Squabby.Database
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<User>().HasAlternateKey(x => x.Username);
+            mb.Entity<User>().HasAlternateKey(x => x.Token);
+            
             mb.Entity<Thread>()
                 .HasOne(x => x.Board)
                 .WithMany(x => x.Threads)
                 .HasForeignKey(x => x.BoardId);
             mb.Entity<Thread>().HasKey(x => new {x.Id, x.BoardId});
-            
+
             mb.Entity<Comment>()
                 .HasOne(x => x.Thread)
                 .WithMany(x => x.Comments)
-                .HasForeignKey(x => new {x.BoardId, x.ThreadId});
+                .HasForeignKey(x => new {x.ThreadId, x.BoardId});
             mb.Entity<Comment>().HasKey(x => new {x.Id, x.BoardId, x.ThreadId});
 
             mb.Entity<Rating>()
                 .HasOne(x => x.Thread)
                 .WithMany(x => x.Ratings)
                 .HasForeignKey(x => new {x.ThreadId, x.BoardId});
-            mb.Entity<Rating>()
-                .HasOne(x => x.Owner)
-                .WithMany(x => x.Ratings)
-                .HasForeignKey(x => x.UserId);
             mb.Entity<Rating>().HasKey(x => new {x.UserId, x.BoardId, x.ThreadId});
         }
     }
