@@ -32,7 +32,7 @@
                 <div class="like dib fr"></div>
             </div>
             <div class="comment">
-                <form action="/b/@Model.Board.Name/@Model.Id/post" method="POST">
+                <form action="/b/postComment?boardId=@Model.Board.Id&threadId=@Model.Id" method="POST">
                     <textarea name="content" placeholder="Leave a comment" required></textarea>
                     <button class="commentbutton" type="submit">Submit</button>
                 </form>

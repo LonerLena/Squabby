@@ -1,5 +1,5 @@
-function LoadThreads(board, start) {
-    getJson(`/b/${board}/getthreads?start=${start}`, function(err, data){
+function LoadThreads(boardId, start) {
+    getJson(`/api/b/getthreads?boardId=${boardId}&start=${start}`, function(err, data){
         let container = document.getElementById("threadcontainer");
         data.threads.forEach(function (thread) {
             container.appendChild(createElement(thread));
@@ -8,15 +8,14 @@ function LoadThreads(board, start) {
 }
 
 function getTime(date) {
-    var date = new Date(date);
-    var year = date.getFullYear();
-    var month = date.getMonth();
-    var day = date.getDate();
+    date = new Date(date);
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
 
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-
-    return [year,month,day].join('-') + " " + [hour,minute].join(':');
+    let hour = date.getHours().toString().padStart(2, '0');
+    let minute = date.getMinutes().toString().padStart(2, '0');
+    return `${year}-${month}-${day} ${hour}:${minute}`;
 }
 
 function createElement(thread) {
@@ -59,6 +58,5 @@ function createElement(thread) {
     threadBox.appendChild(threadContent);
     threadBox.appendChild(dislikeButton);
     threadBox.appendChild(likeButton);
-
     return threadBox;
 }
