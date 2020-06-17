@@ -28,8 +28,9 @@ namespace Squabby.Controllers.User
         public async Task<IActionResult> Login(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password)) return View(new Error(ErrorType.LoginError));
+            
             await using var db = new SquabbyContext();
-            var user = await db.Users.SingleOrDefaultAsync(x => x.Username == username);
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Username == username);
             if (user == null || !PBKDF2.Verify(user.Password, password))
                 return View(new Error(ErrorType.LoginError));
 
@@ -46,7 +47,7 @@ namespace Squabby.Controllers.User
         {
             if (string.IsNullOrWhiteSpace(token)) return View(new Error(ErrorType.LoginError));
             await using var db = new SquabbyContext();
-            var user = await db.Users.SingleOrDefaultAsync(x => x.Token == token);
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Token == token);
             if (user == null) return View(new Error(ErrorType.LoginError));
 
             HttpContext.SetUser(user);
@@ -81,7 +82,7 @@ namespace Squabby.Controllers.User
         /// <summary>
         /// Register anonymous user
         /// </summary>
-        //[HttpPost]
+        //[HttpPost] TODO
         [Route("TokenRegister")]
         public async Task<IActionResult> TokenRegister()
         {
@@ -94,6 +95,7 @@ namespace Squabby.Controllers.User
             
             HttpContext.SetUser(user);
             return RedirectToAction("Index", "Home");
+            // TODO Give user access to token
         }
 
         /// <summary>

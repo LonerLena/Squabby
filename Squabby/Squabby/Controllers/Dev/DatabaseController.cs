@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Squabby.Database;
@@ -11,30 +10,32 @@ namespace Squabby.Controllers.Dev
     [Route("dev")]
     public class DevelopController : Controller
     {
-        [Route("CreateDatabase")]
-        public async Task<string> CreateDatabase()
+        [Route("InitDatabase")]
+        public async Task<string> InitDatabase()
         {
             await using var db = new SquabbyContext();
             await db.Database.EnsureDeletedAsync();
             await db.Database.EnsureCreatedAsync();
-
-            db.Users.Add(new Models.User {Username = "Admin", Password = PBKDF2.Hash("Admin"), UserRole = UserRole.Admin});
-            db.Users.Add(new Models.User {Username = "User", Password = PBKDF2.Hash("User"), UserRole = UserRole.User});
             await db.SaveChangesAsync();
-            return "New database is created";
+            return "Empty database is created";
         }
         
-        [Route("CreateThreads")]
-        public async Task<string> CreateThreads(string board, int amount)
+        [Route("CreateDatabase")]
+        public async Task<string> CreateDatabase()
         {
             await using var db = new SquabbyContext();
+            await InitDatabase();
 
-            var b = db.Boards.First(x => x.Name == board);
-            for (int i = 0; i < amount; i++)
-                db.Threads.Add(new Thread{Title = $"thread title {i}", Content = "thread content", Board = b});
+            var user = new Models.User {Username = "User", Password = PBKDF2.Hash("User"), UserRole = UserRole.User};
+            await db.Users.AddAsync(user);
+            await db.Users.AddAsync(new Models.User {Username = "Admin", Password = PBKDF2.Hash("Admin"), UserRole = UserRole.Admin});
 
+            var board = new Board {Name = "Board", Description = "Board description", Owner = user};
+            await db.Boards.AddAsync(board);
+            for (int i = 0; i < 1_000; i++) await db.Threads.AddAsync(new Thread{Title = $"Thread {i}", Content = "Thread content", Board = board, Rating = i});
+            
             await db.SaveChangesAsync();
-            return "threads are created";
+            return "New database is created";
         }
     }
 #endif

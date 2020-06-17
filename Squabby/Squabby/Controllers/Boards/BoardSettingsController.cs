@@ -14,7 +14,7 @@ namespace Squabby.Controllers.Boards
     {
         [Route("CreateBoard")]
         public IActionResult CreateBoard() => View("~/Views/Board/CreateBoard.cshtml");
-        
+
         /// <summary>
         /// Create new board
         /// </summary>
@@ -22,9 +22,9 @@ namespace Squabby.Controllers.Boards
         [Route("CreateBoard")]
         public async Task<IActionResult> CreateBoard(Board board)
         {
-            if (string.IsNullOrWhiteSpace(board?.Name) || board.Description.Length > Board.MaxDescriptionLength) 
+            if (string.IsNullOrWhiteSpace(board?.Name) || board.Description.Length > Board.MaxDescriptionLength)
                 return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters));
-            
+
             await using var db = new SquabbyContext();
             if (await db.Boards.AnyAsync(x => x.Name == board.Name))
                 return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.NameAlreadyUsedError));

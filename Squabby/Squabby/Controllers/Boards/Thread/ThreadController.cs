@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,10 +22,10 @@ namespace Squabby.Controllers.Boards.Thread
         {
             await using var db = new SquabbyContext();
             var thread = await db.Threads
-                .Include(x => x.Owner)
-                .Include(x => x.Comments)
+                .Include(x=>x.Owner)
+                .Include(x=>x.Comments) // TODO move to api
                 .Include(x=>x.Board)
-                .SingleOrDefaultAsync(x => x.Board.Name == name && x.Id == threadId);
+                .FirstOrDefaultAsync(x => x.Id == threadId && x.Board.Name == name);
 
             if (thread == null)
                 return this.Message($"Could not find a thread with the id {threadId}",
@@ -35,14 +33,11 @@ namespace Squabby.Controllers.Boards.Thread
             
             return View("~/Views/Board/Thread/Overview.cshtml", thread);
         }
-
-        /// <summary>
-        /// Create new thread
-        /// </summary>
+        
         [SquabbyAuthorize]
         //[HttpPost] TODO
-        [Route("{name}/Post")]
-        public async Task<IActionResult> PostThread(string name, Models.Thread thread)
+        [Route("PostThread")]
+        public async Task<IActionResult> PostThread(short boardId, Models.Thread thread)
         {
             if (string.IsNullOrWhiteSpace(thread?.Title)
                 || thread.Title.Length > Models.Thread.MaxTitleLength
@@ -50,66 +45,40 @@ namespace Squabby.Controllers.Boards.Thread
                 return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters)); // TODO
 
             await using var db = new SquabbyContext();
-            var board = await db.Boards.SingleOrDefaultAsync(x => x.Name == name);
+            var board = await db.Boards.FindAsync(boardId);
             if (board == null)
-                return this.Message($"Could not find board {name}", $"Board with the name {name} does not exists");
+                return this.Message($"Could not find board {boardId}", $"Board with the name {boardId} does not exists"); // TODO
 
             var user = HttpContext.GetUser();
             db.Attach(user);
             thread.Owner = user;
             thread.Board = board;
+            thread.Rating = 0;
             await db.Threads.AddAsync(thread);
             await db.SaveChangesAsync();
             return this.Message($"Created thread {thread.Title}"); // TODO
         }
-
+        
         [SquabbyAuthorize]
-        [HttpPost]
-        [Route("{name}/Like")]
-        public async Task<IActionResult> LikeThread(Models.Thread thread) => await Rate(thread, 1);
-
-        [SquabbyAuthorize]
-        [HttpPost]
-        [Route("{name}/Dislike")]
-        public async Task<IActionResult> DislikeThread(Models.Thread thread) => await Rate(thread, -1);
-
-        private async Task<JsonResult> Rate(Models.Thread thread, short ratingValue)
+        //[HttpPost] TODO
+        [Route("PostComment")]
+        public async Task<IActionResult> PostComment(short boardId, int threadId, Comment comment)
         {
-            await using var db = new SquabbyContext();
-            var user = HttpContext.GetUser();
-
-            var t = await db.Threads.Select(t => new
-            {
-                t.Id,
-                t.BoardId,
-                t.Rating,
-                UserRating = t.Ratings.FirstOrDefault(rating =>
-                    rating.Owner.Id == user.Id && rating.BoardId == thread.BoardId && rating.ThreadId == thread.Id)
-            }).FirstOrDefaultAsync(t => t.BoardId == thread.BoardId && t.Id == thread.Id);
-
+            if (string.IsNullOrWhiteSpace(comment.Content)
+                || comment.Content.Length > Comment.MaxContentLength)
+                return View("~/Views/Board/CreateBoard.cshtml", new Error(ErrorType.InvalidParameters)); // TODO
             
-            thread = new Models.Thread {Id = t.Id, BoardId = t.BoardId};
+            await using var db = new SquabbyContext();
+            var thread = await db.Threads.FindAsync(threadId, boardId);
+            if (thread == null) return this.Message($"Could not find thread {boardId}/{threadId}", $"Thread with the id {boardId}/{threadId} does not exists"); //TODO
 
-            if (t.UserRating == null)
-            {
-                AddRating(thread, db, ratingValue);
-                await db.Ratings.AddAsync(new Rating {UserId = user.Id, BoardId = t.BoardId, ThreadId = t.Id, Value = ratingValue});
-            }
-            else
-            {
-                t.UserRating.Value = ratingValue;
-                db.Ratings.Update(t.UserRating);
-                AddRating(thread, db, (short)(ratingValue + t.UserRating.Value * -1));
-            }
-
+            var user = HttpContext.GetUser();
+            db.Attach(user);
+            comment.Owner = user;
+            comment.Thread = thread;
+            await db.Comments.AddAsync(comment);
             await db.SaveChangesAsync();
-            return Json(new {status = "success"});
-        }
-
-        private static void AddRating(Models.Thread thread, SquabbyContext db, short value)
-        {
-            thread.Rating = value;
-            db.Threads.Attach(thread).Property(x=>x.Rating).IsModified = true;
+            return this.Message($"Created comment {comment.Content}"); // TODO
         }
     }
 }
