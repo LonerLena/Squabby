@@ -1,5 +1,5 @@
-function LoadThreads(boardId, start) {
-    getJson(`/api/b/getthreads?boardId=${boardId}&start=${start}`, function(err, data){
+function LoadThreads(boardId, chunk) {
+    getJson(`/api/b/getthreads?boardId=${boardId}&chunk=${chunk}`, function(err, data){
         let container = document.getElementById("threadcontainer");
         data.threads.forEach(function (thread) {
             container.appendChild(createElement(thread));

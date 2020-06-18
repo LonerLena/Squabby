@@ -13,7 +13,7 @@ namespace Squabby.Controllers.Boards
         public const int ThreadsChuckSize = 50;
 
         [Route("GetThreads")]
-        public async Task<JsonResult> GetThreads(short boardId, int start)
+        public async Task<JsonResult> GetThreads(short boardId, int chunk)
         {
             await using var db = new SquabbyContext();
             var threads = await db.Threads
@@ -29,7 +29,7 @@ namespace Squabby.Controllers.Boards
                     t.BoardId,
                     Board = t.Board.Name
                 })
-                .Skip(start)
+                .Skip(chunk * ThreadsChuckSize)
                 .Take(ThreadsChuckSize)
                 .ToArrayAsync();
 

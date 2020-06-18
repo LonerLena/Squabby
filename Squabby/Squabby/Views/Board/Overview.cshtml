@@ -7,15 +7,14 @@
 
 <script src="~/js/Board/Overview.js"></script>
 <script>
-let start = @Squabby.Controllers.Boards.BoardApi.ThreadsChuckSize;
-LoadThreads(@Model.Id, 0);
+let start = 0;
+LoadThreads(@Model.Id, start++);
             
 if(window.addEventListener){
     window.addEventListener('scroll', function() {
         const st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
         if((st+document.documentElement.clientHeight)>=document.documentElement.scrollHeight){
-            LoadThreads(@Model.Id, start);
-            start += @Squabby.Controllers.Boards.BoardApi.ThreadsChuckSize;
+            LoadThreads(@Model.Id, start++);
         }
     });
 }
