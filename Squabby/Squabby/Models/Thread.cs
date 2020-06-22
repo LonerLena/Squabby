@@ -30,6 +30,7 @@ namespace Squabby.Models
         public string Content { get; set; }
         public const int MaxContentLength = 5000;
 
+        public const int MinRating = -1_000_000;
         public int Rating { get; set; }
 
         /* Relations */
