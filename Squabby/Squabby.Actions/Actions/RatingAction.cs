@@ -8,12 +8,13 @@ namespace Squabby.Actions.Actions
 {
     public static class RatingAction
     {
-        private const int MinRating = -10000;
-        [SquabbyAction(1_00)]
+        private const int RatingDecrease = 10;
+        
+        [SquabbyAction(1_800_000)]
         public static async Task RatingUpdate()
         {
             await using var context = new SquabbyContext();
-            await context.Database.ExecuteSqlRawAsync($"UPDATE Threads SET Rating = GREATEST(Rating - 100, {Thread.MinRating});");
+            await context.Database.ExecuteSqlRawAsync($"UPDATE Threads SET Rating = GREATEST(Rating - {RatingDecrease}, {Thread.MinRating});");
         }
     }
 }
