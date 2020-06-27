@@ -123,6 +123,23 @@ body {
     margin-top:2rem;
 }
 
+.menu .redirect {
+    color: white;
+    font-weight: 900;
+    opacity: 0.3;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    text-transform:uppercase;
+    display: block;
+    margin-top: 1rem;
+    transition:opacity 1s;
+}
+
+.menu .redirect:hover {
+    opacity: 0.7;
+}
+
 #menu form {
     margin-left: 24px;
     margin-bottom:2rem;
@@ -134,3 +151,4 @@ body {
     background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
     margin:1.5rem;
 }
+
